@@ -29,10 +29,15 @@ public class PriceTest {
         assertFalse(Price.isValidPrice(""));
         assertFalse(Price.isValidPrice("abc.ef"));
         assertFalse(Price.isValidPrice("1a2b.3c"));
-        assertFalse(Price.isValidPrice("abc,ef"));
+        assertFalse(Price.isValidPrice("abc.ef"));
+        assertFalse(Price.isValidPrice("1.1"));
+        assertFalse(Price.isValidPrice("34.567"));
+        assertFalse(Price.isValidPrice("043.23"));
 
         // valid prices
-        assertTrue(Price.isValidPrice("123,45"));
+        assertTrue(Price.isValidPrice("123.45"));
         assertTrue(Price.isValidPrice("56.34"));
+        assertTrue(Price.isValidPrice("0.00"));
+        assertTrue(Price.isValidPrice("0.24"));
     }
 }

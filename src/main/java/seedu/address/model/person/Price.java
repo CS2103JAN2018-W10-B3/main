@@ -10,12 +10,13 @@ public class Price {
 
 
     public static final String MESSAGE_PRICE_CONSTRAINTS =
-            "Price can only contain numbers and it should be given to 2 decimal places";
-    public static final String PRICE_VALIDATION_REGEX = "[0-9]+([,.][0-9]{1,2})?";
+            "Price can only contain numbers and it should be given to 2 decimal places." +
+                    "Price should not begin with zero unless it is less than a dollar.";
+    public static final String PRICE_VALIDATION_REGEX = "\\d+([.]\\d{2})";
     public final String value;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Price}.
      *
      * @param price A valid price.
      */
@@ -26,10 +27,17 @@ public class Price {
     }
 
     /**
-     * Returns true if a given string is a valid person phone number.
+     * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(PRICE_VALIDATION_REGEX);
+        return test.matches(PRICE_VALIDATION_REGEX) && !isZeroAtBeginning(test);
+    }
+
+    /**
+     * Returns true if a given price is more than or equal to a dollar and does not start with digit zero.
+     */
+    private static boolean isZeroAtBeginning(String test) {
+        return test.charAt(0) == '0' && test.charAt(1) != '.';
     }
 
     @Override
