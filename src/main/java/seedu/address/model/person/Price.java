@@ -10,8 +10,8 @@ public class Price {
 
 
     public static final String MESSAGE_PRICE_CONSTRAINTS =
-            "Price can only contain numbers and it should be given to 2 decimal places." +
-                    "Price should not begin with zero unless it is less than a dollar.";
+            "Price can only contain numbers and it should be given to 2 decimal places."
+                    + "Price should not begin with zero unless it is less than a dollar.";
     public static final String PRICE_VALIDATION_REGEX = "\\d+([.]\\d{2})";
     public final String value;
 
