@@ -18,6 +18,8 @@ import seedu.address.commons.events.ui.NewResultAvailableEvent;
  */
 public class ResultDisplay extends UiPart<Region> {
 
+    public static final String ERROR_STYLE = "error";
+
     private static final Logger logger = LogsCenter.getLogger(ResultDisplay.class);
     private static final String FXML = "ResultDisplay.fxml";
 
@@ -35,7 +37,33 @@ public class ResultDisplay extends UiPart<Region> {
     @Subscribe
     private void handleNewResultAvailableEvent(NewResultAvailableEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        Platform.runLater(() -> displayed.setValue(event.message));
+
+        Platform.runLater(() -> {
+
+            if (event.isSuccessful) {
+                setStyleForSuccessfulCommand();
+            } else {
+                setStyleForFailedCommand();
+            }
+
+            displayed.setValue(event.message);
+        });
     }
+
+    /** Adds error style for failed command's result display */
+    private void setStyleForFailedCommand() {
+        if (resultDisplay.getStyleClass().contains(ERROR_STYLE)) {
+            return;
+        }
+        resultDisplay.getStyleClass().add(ERROR_STYLE);
+    }
+
+    /** Removes error style for successful command's result display */
+    private void setStyleForSuccessfulCommand() {
+        if (resultDisplay.getStyleClass().contains(ERROR_STYLE)) {
+            resultDisplay.getStyleClass().remove(ERROR_STYLE);
+        }
+    }
+
 
 }

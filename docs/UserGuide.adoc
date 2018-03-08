@@ -65,6 +65,9 @@ Format: `help`
 Adds a person to the address book +
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
+[NOTE]
+Name and phone fields must not be left blank
+
 [TIP]
 A person can have any number of tags (including 0)
 
