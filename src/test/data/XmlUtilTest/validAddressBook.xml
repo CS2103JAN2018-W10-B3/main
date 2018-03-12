@@ -5,53 +5,62 @@
         <phone isPrivate="false">9482424</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
+        <price isPrivate="false">98.75</price>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
         <phone isPrivate="false">87249245</phone>
         <email isPrivate="false">ruth@example.com</email>
         <address isPrivate="false">81th street</address>
+        <price isPrivate="false">12.34</price>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
         <phone isPrivate="false">95352563</phone>
         <email isPrivate="false">heinz@example.com</email>
         <address isPrivate="false">wall street</address>
+        <price isPrivate="false">7.65</price>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
         <phone isPrivate="false">87652533</phone>
         <email isPrivate="false">cornelia@example.com</email>
         <address isPrivate="false">10th street</address>
+        <price isPrivate="false">3.90</price>
     </persons>
     <persons>
         <name>Werner Meyer</name>
         <phone isPrivate="false">9482224</phone>
         <email isPrivate="false">werner@example.com</email>
         <address isPrivate="false">michegan ave</address>
+        <price isPrivate="false">4.65</price>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
         <phone isPrivate="false">9482427</phone>
         <email isPrivate="false">lydia@example.com</email>
         <address isPrivate="false">little tokyo</address>
+        <price isPrivate="false">8.45</price>
     </persons>
     <persons>
         <name>Anna Best</name>
         <phone isPrivate="false">9482442</phone>
         <email isPrivate="false">anna@example.com</email>
         <address isPrivate="false">4th street</address>
+        <price isPrivate="false">20.30</price>
     </persons>
     <persons>
         <name>Stefan Meier</name>
         <phone isPrivate="false">8482424</phone>
         <email isPrivate="false">stefan@example.com</email>
         <address isPrivate="false">little india</address>
+        <price isPrivate="false">9.25</price>
     </persons>
     <persons>
         <name>Martin Mueller</name>
         <phone isPrivate="false">8482131</phone>
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">chicago ave</address>
+        <price isPrivate="false">0.95</price>
     </persons>
 </addressbook>
