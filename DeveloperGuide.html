@@ -89,7 +89,7 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
+<li><a href="#deleting-a-food">H.2. Deleting a food</a></li>
 <li><a href="#saving-data">H.3. Saving data</a></li>
 </ul>
 </li>
@@ -440,7 +440,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>FoodListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -489,7 +489,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a food) and/or raise events.</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -529,7 +529,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the Address Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Food&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
@@ -581,7 +581,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of HackEat (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
@@ -592,7 +592,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
+<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of HackEat before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are implemented this way:</p>
@@ -633,7 +633,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
+<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th food in HackEat. The current state of HackEat is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -641,7 +641,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
+<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new food.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -661,10 +661,10 @@ If a command fails its execution, it will not be pushed to the <code>UndoRedoSta
 </table>
 </div>
 <div class="paragraph">
-<p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
+<p>The user now decides that adding the food was a mistake, and decides to undo that action using <code>undo</code>.</p>
 </div>
 <div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command executed.</p>
+<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore HackEat to the state before the <code>add</code> command executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -692,7 +692,7 @@ If the <code>undoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
+<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores HackEat to the state after the command is executed).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -788,7 +788,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the food being deleted).</p>
 </li>
 <li>
 <p>Cons: We must ensure that the implementation of each individual command are correct.</p>
@@ -804,7 +804,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
+<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies HackEat (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1208,7 +1208,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all persons in the list.</p>
+<p>Add a shorthand equivalent alias for each of the individual commands. For example, besides typing <code>clear</code>, the user can also type <code>c</code> to remove all foods in the list.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1254,7 +1254,7 @@ Do take a look at <a href="#Design-Logic">Section 2.3, &#8220;Logic component&#8
 </div>
 <h4 id="code-model-code-component" class="discrete"><code>Model</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in the address book, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>model</code>. One day, the <code>logic</code>-in-charge approaches you for help. He wants to implement a command such that the user is able to remove a particular tag from everyone in HackEat, but the model API does not support such a functionality at the moment. Your job is to implement an API method, so that your teammate can use your API to implement his command.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1271,7 +1271,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in the address book.</p>
+<p>Add a <code>removeTag(Tag)</code> method. The specified tag will be removed from everyone in HackEat.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1287,7 +1287,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <p>Think about how you can use SLAP to design the method. Where should we place the main logic of deleting tags?</p>
 </li>
 <li>
-<p>Find out which of the existing API methods in  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a person, and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> allows you to update the tags.</p>
+<p>Find out which of the existing API methods in  <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a> classes can be used to implement the tag removal logic. <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a> allows you to update a food, and <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a> allows you to update the tags.</p>
 </li>
 </ul>
 </div>
@@ -1297,7 +1297,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 <div class="ulist">
 <ul>
 <li>
-<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each person, and remove the <code>tag</code> from each person.</p>
+<p>Implement a <code>removeTag(Tag)</code> method in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/AddressBook.java"><code>AddressBook</code></a>. Loop through each food, and remove the <code>tag</code> from each food.</p>
 </li>
 <li>
 <p>Add a new API method <code>deleteTag(Tag)</code> in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a>. Your <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/ModelManager.java"><code>ModelManager</code></a> should call <code>AddressBook#removeTag(Tag)</code>.</p>
@@ -1330,7 +1330,7 @@ Do take a look at <a href="#Design-Model">Section 2.4, &#8220;Model component&#8
 </div>
 <h4 id="code-ui-code-component" class="discrete"><code>Ui</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last person in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>ui</code>. During a beta testing session, your team is observing how the users use your address book application. You realize that one of the users occasionally tries to delete non-existent tags from a contact, because the tags all look the same visually, and the user got confused. Another user made a typing mistake in his command, but did not realize he had done so because the error message wasn&#8217;t prominent enough. A third user keeps scrolling down the list, because he keeps forgetting the index of the last food in the list. Your job is to implement improvements to the UI to solve all these problems.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1347,7 +1347,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Use different colors for different tags inside person cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow.</p>
+<p>Use different colors for different tags inside food cards. For example, <code>friends</code> tags can be all in brown, and <code>colleagues</code> tags can be all in yellow.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -1373,7 +1373,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>The tag labels are created inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java">the <code>PersonCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
+<p>The tag labels are created inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/FoodCard.java">the <code>FoodCard</code> constructor</a> (<code>new Label(tag.tagName)</code>). <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Label.html">JavaFX&#8217;s <code>Label</code> class</a> allows you to modify the style of each Label, such as changing its color.</p>
 </li>
 <li>
 <p>Use the .css attribute <code>-fx-background-color</code> to add a color.</p>
@@ -1389,7 +1389,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>You can modify the existing test methods for <code>PersonCard</code> 's to include testing the tag&#8217;s color as well.</p>
+<p>You can modify the existing test methods for <code>FoodCard</code> 's to include testing the tag&#8217;s color as well.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/798">PR</a> for the full solution.</p>
@@ -1486,7 +1486,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 </li>
 <li>
-<p>Modify the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in the address book.</p>
+<p>Modify the <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to show the total number of people in HackEat.</p>
 <div class="paragraph">
 <p><strong>Before</strong></p>
 </div>
@@ -1515,7 +1515,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/StatusBarFooter.fxml"><code>StatusBarFooter.fxml</code></a> will need a new <code>StatusBar</code>. Be sure to set the <code>GridPane.columnIndex</code> properly for each <code>StatusBar</code> to avoid misalignment!</p>
 </li>
 <li>
-<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever the address book is updated.</p>
+<p><a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> needs to initialize the status bar on application start, and to update it accordingly whenever HackEat is updated.</p>
 </li>
 </ul>
 </div>
@@ -1525,16 +1525,16 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 <div class="ulist">
 <ul>
 <li>
-<p>Modify the constructor of <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of persons when the application just started.</p>
+<p>Modify the constructor of <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter</code></a> to take in the number of foods when the application just started.</p>
 </li>
 <li>
-<p>Use <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of persons whenever there are new changes to the addressbook.</p>
+<p>Use <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/StatusBarFooter.java"><code>StatusBarFooter#handleAddressBookChangedEvent(AddressBookChangedEvent)</code></a> to update the number of foods whenever there are new changes to the addressbook.</p>
 </li>
 <li>
 <p>For tests, modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/StatusBarFooterHandle.java"><code>StatusBarFooterHandle</code></a> by adding a state-saving functionality for the total number of people status, just like what we did for save location and sync status.</p>
 </li>
 <li>
-<p>For system tests, modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of persons status bar.</p>
+<p>For system tests, modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/systemtests/AddressBookSystemTest.java"><code>AddressBookSystemTest</code></a> to also verify the new total number of foods status bar.</p>
 </li>
 <li>
 <p>See this <a href="https://github.com/se-edu/addressbook-level4/pull/803">PR</a> for the full solution.</p>
@@ -1551,7 +1551,7 @@ Do take a look at <a href="#Design-Ui">Section 2.2, &#8220;UI component&#8221;</
 </div>
 <h4 id="code-storage-code-component" class="discrete"><code>Storage</code> component</h4>
 <div class="paragraph">
-<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving the address book to the cloud. However, the current implementation of the application constantly saves the address book after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for the address book storage.</p>
+<p><strong>Scenario:</strong> You are in charge of <code>storage</code>. For your next project milestone, your team plans to implement a new feature of saving HackEat to the cloud. However, the current implementation of the application constantly saves HackEat after the execution of each command, which is not ideal if the user is working on limited internet connection. Your team decided that the application should instead save the changes to a temporary local backup file first, and only upload to the cloud after the user closes the application. Your job is to implement a backup API for HackEat storage.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1568,7 +1568,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that the address book can be saved in a fixed temporary location.</p>
+<p>Add a new method <code>backupAddressBook(ReadOnlyAddressBook)</code>, so that HackEat can be saved in a fixed temporary location.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -1615,7 +1615,7 @@ Do take a look at <a href="#Design-Storage">Section 2.5, &#8220;Storage componen
 <div class="sect3">
 <h4 id="description"><a class="link" href="#description">A.2.1. Description</a></h4>
 <div class="paragraph">
-<p>Edits the remark for a person specified in the <code>INDEX</code>.<br>
+<p>Edits the remark for a food specified in the <code>INDEX</code>.<br>
 Format: <code>remark INDEX r/[REMARK]</code></p>
 </div>
 <div class="paragraph">
@@ -1625,11 +1625,11 @@ Format: <code>remark INDEX r/[REMARK]</code></p>
 <ul>
 <li>
 <p><code>remark 1 r/Likes to drink coffee.</code><br>
-Edits the remark for the first person to <code>Likes to drink coffee.</code></p>
+Edits the remark for the first food to <code>Likes to drink coffee.</code></p>
 </li>
 <li>
 <p><code>remark 1 r/</code><br>
-Removes the remark for the first person.</p>
+Removes the remark for the first food.</p>
 </li>
 </ul>
 </div>
@@ -1708,9 +1708,9 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-personcard-code">[Step 3] Ui: Add a placeholder for remark in <code>PersonCard</code></a></h5>
+<h5 id="step-3-ui-add-a-placeholder-for-remark-in-code-foodcard-code"><a class="link" href="#step-3-ui-add-a-placeholder-for-remark-in-code-foodcard-code">[Step 3] Ui: Add a placeholder for remark in <code>FoodCard</code></a></h5>
 <div class="paragraph">
-<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> s to display a remark for each person later.</p>
+<p>Let&#8217;s add a placeholder on all our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/FoodCard.java"><code>FoodCard</code></a> s to display a remark for each food later.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1718,10 +1718,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/PersonListCard.fxml"><code>PersonListCard.fxml</code></a>.</p>
+<p>Add a <code>Label</code> with any random text inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/resources/view/FoodListCard.fxml"><code>FoodListCard.fxml</code></a>.</p>
 </li>
 <li>
-<p>Add FXML annotation in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> to tie the variable to the actual label.</p>
+<p>Add FXML annotation in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/FoodCard.java"><code>FoodCard</code></a> to tie the variable to the actual label.</p>
 </li>
 </ol>
 </div>
@@ -1731,7 +1731,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/PersonCardHandle.java"><code>PersonCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
+<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/guitests/guihandles/FoodCardHandle.java"><code>FoodCardHandle</code></a> so that future tests can read the contents of the remark label.</p>
 </li>
 </ol>
 </div>
@@ -1739,7 +1739,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="sect4">
 <h5 id="step-4-model-add-code-remark-code-class"><a class="link" href="#step-4-model-add-code-remark-code-class">[Step 4] Model: Add <code>Remark</code> class</a></h5>
 <div class="paragraph">
-<p>We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
+<p>We have to properly encapsulate the remark in our <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a> class. Instead of just using a <code>String</code>, let&#8217;s follow the conventional class structure that the codebase already uses by adding a <code>Remark</code> class.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1747,7 +1747,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
+<p>Add <code>Remark</code> to model component (you can copy from <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Address.java"><code>Address</code></a>, remove the regex and change the names accordingly).</p>
 </li>
 <li>
 <p>Modify <code>RemarkCommand</code> to now take in a <code>Remark</code> instead of a <code>String</code>.</p>
@@ -1766,9 +1766,9 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-5-model-modify-code-person-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-person-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>Person</code> to support a <code>Remark</code> field</a></h5>
+<h5 id="step-5-model-modify-code-food-code-to-support-a-code-remark-code-field"><a class="link" href="#step-5-model-modify-code-food-code-to-support-a-code-remark-code-field">[Step 5] Model: Modify <code>Food</code> to support a <code>Remark</code> field</a></h5>
 <div class="paragraph">
-<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Now we have the <code>Remark</code> class, we need to actually use it inside <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1776,10 +1776,10 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add <code>getRemark()</code> in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Add <code>getRemark()</code> in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a>.</p>
 </li>
 <li>
-<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the person will be created without a remark).</p>
+<p>You may assume that the user will not be able to use the <code>add</code> and <code>edit</code> commands to modify the remarks field (i.e. the food will be created without a remark).</p>
 </li>
 <li>
 <p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/util/SampleDataUtil.java/"><code>SampleDataUtil</code></a> to add remarks for the sample data (delete your <code>addressBook.xml</code> so that the application will load the sample data when you launch it.)</p>
@@ -1788,9 +1788,9 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedperson-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedPerson</code> class</a></h5>
+<h5 id="step-6-storage-add-code-remark-code-field-to-code-xmladaptedfood-code-class"><a class="link" href="#step-6-storage-add-code-remark-code-field-to-code-xmladaptedfood-code-class">[Step 6] Storage: Add <code>Remark</code> field to <code>XmlAdaptedFood</code> class</a></h5>
 <div class="paragraph">
-<p>We now have <code>Remark</code> s for <code>Person</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
+<p>We now have <code>Remark</code> s for <code>Food</code> s, but they will be gone when we exit the application. Let&#8217;s modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/storage/XmlAdaptedFood.java"><code>XmlAdaptedFood</code></a> to include a <code>Remark</code> field so that it will be saved.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1808,15 +1808,15 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Fix <code>invalidAndValidPersonAddressBook.xml</code>, <code>typicalPersonsAddressBook.xml</code>, <code>validAddressBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
+<p>Fix <code>invalidAndValidFoodAddressBook.xml</code>, <code>typicalFoodsAddressBook.xml</code>, <code>validAddressBook.xml</code> etc., such that the XML tests will not fail due to a missing <code>&lt;remark&gt;</code> element.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-6b-test-add-withremark-for-code-personbuilder-code"><a class="link" href="#step-6b-test-add-withremark-for-code-personbuilder-code">[Step 6b] Test: Add withRemark() for <code>PersonBuilder</code></a></h5>
+<h5 id="step-6b-test-add-withremark-for-code-foodbuilder-code"><a class="link" href="#step-6b-test-add-withremark-for-code-foodbuilder-code">[Step 6b] Test: Add withRemark() for <code>FoodBuilder</code></a></h5>
 <div class="paragraph">
-<p>Since <code>Person</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/person/Person.java"><code>Person</code></a>.</p>
+<p>Since <code>Food</code> can now have a <code>Remark</code>, we should add a helper method to <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/FoodBuilder.java"><code>FoodBuilder</code></a>, so that users are able to create remarks when building a <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/model/food/Food.java"><code>Food</code></a>.</p>
 </div>
 <div class="paragraph">
 <p><strong>Tests:</strong></p>
@@ -1824,18 +1824,18 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/PersonBuilder.java"><code>PersonBuilder</code></a>. This method will create a new <code>Remark</code> for the person that it is currently building.</p>
+<p>Add a new method <code>withRemark()</code> for <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/FoodBuilder.java"><code>FoodBuilder</code></a>. This method will create a new <code>Remark</code> for the food that it is currently building.</p>
 </li>
 <li>
-<p>Try and use the method on any sample <code>Person</code> in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/TypicalPersons.java"><code>TypicalPersons</code></a>.</p>
+<p>Try and use the method on any sample <code>Food</code> in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/testutil/TypicalFoods.java"><code>TypicalFoods</code></a>.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect4">
-<h5 id="step-7-ui-connect-code-remark-code-field-to-code-personcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-personcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>PersonCard</code></a></h5>
+<h5 id="step-7-ui-connect-code-remark-code-field-to-code-foodcard-code"><a class="link" href="#step-7-ui-connect-code-remark-code-field-to-code-foodcard-code">[Step 7] Ui: Connect <code>Remark</code> field to <code>FoodCard</code></a></h5>
 <div class="paragraph">
-<p>Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
+<p>Our remark label in <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/FoodCard.java"><code>FoodCard</code></a> is still a placeholder. Let&#8217;s bring it to life by binding it with the actual <code>remark</code> field.</p>
 </div>
 <div class="paragraph">
 <p><strong>Main:</strong></p>
@@ -1843,7 +1843,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/PersonCard.java"><code>PersonCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Person</code> 's remark.</p>
+<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/main/java/seedu/address/ui/FoodCard.java"><code>FoodCard</code></a>'s constructor to bind the <code>Remark</code> field to the <code>Food</code> 's remark.</p>
 </li>
 </ol>
 </div>
@@ -1853,7 +1853,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysPerson(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
+<p>Modify <a href="https://github.com/se-edu/addressbook-level4/tree/master/src/test/java/seedu/address/ui/testutil/GuiTestAssert.java"><code>GuiTestAssert#assertCardDisplaysFood(&#8230;&#8203;)</code></a> so that it will compare the now-functioning remark label.</p>
 </li>
 </ol>
 </div>
@@ -1869,7 +1869,7 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a person.</p>
+<p>Replace the logic in <code>RemarkCommand#execute()</code> (that currently just throws an <code>Exception</code>), with the actual logic to modify the remarks of a food.</p>
 </li>
 </ol>
 </div>
@@ -1903,7 +1903,11 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>has a need to manage a significant number of contacts</p>
+<p>Developers/Hackers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>is picky and has a need to manage/order a significant number of pre-approved foods</p>
 </li>
 <li>
 <p>prefer desktop apps over other types</p>
@@ -1917,10 +1921,19 @@ for <code>RemarkCommandParser</code>.</p>
 <li>
 <p>is reasonably comfortable using CLI apps</p>
 </li>
+<li>
+<p>busy working on projects and immersed to change train of thought</p>
+</li>
+<li>
+<p>does not care about their body/health and willing to order food to doorstep</p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: manage contacts faster than a typical mouse/GUI driven app</p>
+<p><strong>Value proposition</strong>: Order food with as little disruption as possible to the user&#8217;s workflow</p>
 </div>
 </div>
 </div>
@@ -1955,32 +1968,188 @@ for <code>RemarkCommandParser</code>.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new person</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use cmdline to add food that I like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can get recommended meals that I will likely enjoy</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a person</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove entries that I no longer need</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a food</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can avoid meals that I will probably not enjoy</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a person by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate details of persons without having to go through the entire list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a food by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to see how many times I’ve ordered certain foods</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add my allergies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can eat safely and not die</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Be blocked from adding food preferences</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Be told if the food cannot be accepted due to allergies and not die</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edit my food preferences</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can have meals which fit my current requirements</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Contact support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix any issues that may happen with the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can use Unix-y commands to do actions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I am not dis-immersed from coding-work when ordering food</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pre-fill/browse local area/people nearby food address books/playlists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save time building my own book</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rate a meal on a scale from 1 to 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can get recommended meals that I will likely enjoy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a price range for orders</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to help with budgeting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add shortcuts for my favourite commands</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increase the speed in which I order food</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See how much calories in each meal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to better track and align my personal health goals</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add culture tags to the food items that I like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The app can recommend certain types of cultural dishes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Discover new restaurants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can try new types of cuisine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">order a random meal that I will probably like to my doorstep</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can minimise distraction of food ordering and focus on my work</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See images of how the food looks like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">So that I know how a dish appears if I have never heard of the name before</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type in my mood and get a list of recommended foods</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can decide more quickly on what to eat</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">hide <a href="#private-contact-detail">private contact details</a> by default</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing them by accident</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">minimize chance of someone else seeing the food by accident</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use different criterias to help decide where my food will be ordered from</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can order food based on my current needs e.g. fastest chicken rice(if I am starving)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set a maximum number of food or restaurants to be shown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I will not be overloaded with information</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search, add and order for foods with a sale or discounted price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save money and get good value for money</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user with many persons in the address book</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sort persons by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a person easily</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check how long my food will take to arrive</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I have an idea of the waiting time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save restaurants that I like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can order food from my preferred restaurants more easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set personal goals</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can get recommended meals which are aligned with my objectives</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add friends using the app</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">So I can know what they’re eating and talk about it</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See the delivery rate of the deliverer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can estimate the probability of the chances of my food arriving</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See the rating of a restaurant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I know how reliable/how good the food is from that restaurant</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete restaurants that I have saved</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">So that I can keep an updated list of restaurants I like</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user with many foods in HackEat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort foods by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate a food easily</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">See a history of what I’ve written as a GitHub-style diagram</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can see something cool</p></td>
 </tr>
 </tbody>
 </table>
@@ -1995,23 +2164,23 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
-<h3 id="use-case-delete-person" class="discrete">Use case: Delete person</h3>
+<h2 id="use-case-rate-a-meal" class="discrete">Use case: Rate a meal</h2>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to list persons</p>
+<p>User types in a food that he would like to eat</p>
 </li>
 <li>
-<p>AddressBook shows a list of persons</p>
+<p>Hackeat orders the food</p>
 </li>
 <li>
-<p>User requests to delete a specific person in the list</p>
+<p>User rates the meal he just had</p>
 </li>
 <li>
-<p>AddressBook deletes the person</p>
+<p>Hackeat saves the rating.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2024,19 +2193,105 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>2a. The list is empty.</p>
+<p>1a. Food contains ingredients that he is allergic to.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Hackeat informs user of his allergy.</p>
+</li>
+<li>
+<p>1a2. User decides whether to go ahead with the order.</p>
+</li>
+<li>
+<p>Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h2 id="use-case-edit-food-preferences" class="discrete">Use case: Edit food preferences</h2>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User types in a command to view his food preferences.</p>
+</li>
+<li>
+<p>Hackeat displays a list of food preferences.</p>
+</li>
+<li>
+<p>User types in command to modify his food preferences.</p>
+</li>
+<li>
+<p>Hackeat updates user&#8217;s food preferences.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
-<li>
-<p>3a. The given index is invalid.</p>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>3a1. AddressBook shows an error message.</p>
+<p>3a. User types in a food preference that already exists.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>3a1. Hackeat informs user that food preference already exists.</p>
+</li>
+<li>
+<p>Use case ends.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<h2 id="use-case-search-add-and-order-food-on-sale" class="discrete">Use case: Search, add and order food on sale</h2>
 <div class="paragraph">
-<p>Use case resumes at step 2.</p>
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User searches for food which are on sale.</p>
+</li>
+<li>
+<p>Hackeat returns a list of relevant food.</p>
+</li>
+<li>
+<p>User picks one of the food to order.</p>
+</li>
+<li>
+<p>Hackeat helps to order the food.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>Extensions</strong></p>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a. No food is sale</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Hackeat informs user that nothing is on sale.</p>
+</li>
+<li>
+<p>1a2. User chooses to order other food.</p>
+<div class="paragraph">
+<p>Use case resumes from Step 4.</p>
 </div>
 </li>
 </ul>
@@ -2058,15 +2313,42 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>1.8.0_60</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 1000 foods without a noticeable sluggishness in performance for typical usage.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
+<li>
+<p>A programmer should be able to select and order food faster than using a mobile application like UberEats, Foodora, etc. given that the user has set-up his/her food preferences.</p>
+</li>
+<li>
+<p>The security measures required for safe handling of payments, home addresses and <a href="#credit-card-details">credit card details</a> should be industry-standard.</p>
+</li>
+<li>
+<p>Complex tasks such as payment should be outsourced to existing, leading payment providers such as Stripe so that we can benefit from well-developed products.</p>
+</li>
+<li>
+<p>A reliable <a href="#food-delivery-network">food delivery network</a> should be used to actually fulfill the food orders and deliveries.</p>
+</li>
+<li>
+<p>The food delivery services we use to power the backend of the app should offer a <a href="#java-api">Java API</a>.</p>
+</li>
+<li>
+<p>The user experience should be similar to the <a href="#environment">environment</a> that programmers are used.</p>
+</li>
+<li>
+<p>After asking for a food suggestion, the system should respond within 1 second.</p>
+</li>
+<li>
+<p>The service provided by us should be cost-neutral or profitable.</p>
+</li>
+<li>
+<p>The user interface should be simple and minimise distractions so that programmers can continue with their work in a focused manner.</p>
+</li>
+<li>
+<p>A user should not be bored with the food that the app suggests and orders, as a certain level of novelty and surprise must be provided with each experience.</p>
+</li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2079,9 +2361,35 @@ for <code>RemarkCommandParser</code>.</p>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
+<dt class="hdlist1"><a id="food-delivery-network"></a> Food delivery network</dt>
 <dd>
-<p>A contact detail that is not meant to be shared with others</p>
+<p>Companies such as delivery.com, eatstreet.com, and ordr.in that offer APIs to access their food delivery service.
+These services handle the communication with restaurants and deliverers for successful delivery of the food.</p>
+</dd>
+<dt class="hdlist1"><a id="environment"></a> Environment</dt>
+<dd>
+<p>Refers to the visual landscape inhabited by code monkeys. Such landscapes are characterised by certain fonts,
+commands, and the plain look and feel of terminal applications.</p>
+</dd>
+<dt class="hdlist1"><a id="java-api"></a> Java API</dt>
+<dd>
+<p>Refers to a Java library that can be used to programmatically access a food delivery service.</p>
+</dd>
+<dt class="hdlist1"><a id="price-range"></a> Price Range</dt>
+<dd>
+<p>Price of the food. Can be 1, 2, or 3.</p>
+</dd>
+<dt class="hdlist1"><a id="cuisine"></a> Cuisine</dt>
+<dd>
+<p>The country from which the food originates.</p>
+</dd>
+<dt class="hdlist1"><a id="credit-card-details"></a> Credit card details</dt>
+<dd>
+<p>Card number, card holder&#8217;s name, expiry date and CSC (card security code).</p>
+</dd>
+<dt class="hdlist1"><a id="order"></a> Order</dt>
+<dd>
+<p>An set of food items that a user asks the app to deliver.</p>
 </dd>
 </dl>
 </div>
@@ -2181,15 +2489,15 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-food"><a class="link" href="#deleting-a-food">H.2. Deleting a food</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a food while all foods are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all foods using the <code>list</code> command. Multiple foods in the list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
@@ -2197,7 +2505,7 @@ Expected: First contact is deleted from the list. Details of the deleted contact
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No food is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
@@ -2237,7 +2545,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-02-21 14:13:38 UTC
+Last updated 2018-03-13 14:14:50 UTC
 </div>
 </div>
 </body>
