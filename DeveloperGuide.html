@@ -80,7 +80,11 @@
 <li><a href="#GetStartedProgramming-RemarkCommand">A.2. Creating a new command: <code>remark</code></a></li>
 </ul>
 </li>
-<li><a href="#product-scope">Appendix B: Product Scope</a></li>
+<li><a href="#product-scope">Appendix B: Product Scope</a>
+<ul class="sectlevel2">
+<li><a href="#feature-contribution">B.1. Feature contribution</a></li>
+</ul>
+</li>
 <li><a href="#user-stories">Appendix C: User Stories</a></li>
 <li><a href="#use-cases">Appendix D: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
@@ -1935,6 +1939,91 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p><strong>Value proposition</strong>: Order food with as little disruption as possible to the user&#8217;s workflow</p>
 </div>
+<div class="sect2">
+<h3 id="feature-contribution"><a class="link" href="#feature-contribution">B.1. Feature contribution</a></h3>
+<div class="paragraph">
+<p><strong>Major Enhancements:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Order command - Sam</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allows users to order food from the HackEat book. Designed to choose a food that best suits the scenario, making it
+trustworthy enough for hackers that are too lazy to order themselves.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Food Profile - Jackson</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allows the user to browse through the HackEat book while showing visual statistics of the foods. Hackers, when not
+hacking can optimise their foods and get insightful knowledge through data visualisation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>User shortcuts - Cheryl</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sometimes ordering can still be tedious. With the shortcut system, users can create new shortcuts which minmises the
+number of characters required to order foods. This is especially handy for the super users who need food ASAP. The
+system will also include single commands to execute multiple commands, so users can order multiple foods with just one
+command!</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Minor Enhancements:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Addition of User profile - Jackson</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User profile will save the preferences of the user, including allergies and how frugal they are. It also stores
+personal information so the <code>order</code> command can order food to their address.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Addition of Price property - Cheryl</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Price property is required to track budgeting and control expenses. If the user is frugal, expensive foods will be
+ordered less frequently.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Addition of Rating property - Sam</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Rating property of a food is essential to gather knowledge on what food the user enjoys. Highly rated foods will be
+recommended more often, until it is too frequent.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2520,7 +2609,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 06:35:56 UTC
+Last updated 2018-03-20 08:17:49 UTC
 </div>
 </div>
 </body>
