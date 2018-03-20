@@ -45,10 +45,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
-<li><a href="#code-order-code-command-feature">3.5. <code>order</code> command feature</a></li>
+<li><a href="#proposed-add-shortcuts">3.2. [Proposed] Add Shortcuts</a></li>
+<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#code-order-code-command-feature">3.6. <code>order</code> command feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -874,20 +875,74 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-add-shortcuts"><a class="link" href="#proposed-add-shortcuts">3.2. [Proposed] Add Shortcuts</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>A new Command class <code>AddShortcutCommand</code> will be created. A <code>Shortcut</code> class will be added to Model. An ArrayList of Commands that is linked to a particular shortcut will be saved. Every <code>Person</code> object will have a HashMap which stores the different Shortcuts they have created.</p>
+</div>
+<div class="paragraph">
+<p>Suppose that a user has just launched the application. The user decides to create a new shortcut for ordering his favorite food. He will type in <code>mksc orderfave</code> and he will then be prompted to type in the commands that he would like to associate with that particular shortcut, for e.g. <code>find butter, order 1</code>.
+The sequence of commands he has typed in will be stored in a <code>List</code>. The <code>List</code>, together with the name of the shortcut will then be stored in a <code>HashMap</code> as part of the attributes of the <code>Person</code> class.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UpdatedLogicCommandClassDiagram.png" alt="UpdatedLogicCommandClassDiagram" width="800">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-whether-to-make-addshortcut-undoable"><a class="link" href="#aspect-whether-to-make-addshortcut-undoable">Aspect: Whether to make AddShortcut undoable</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Make it undoable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Provides user with greater flexibility</p>
+</li>
+<li>
+<p>Cons: Harder to implement</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Do not make it undoable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier to implement</p>
+</li>
+<li>
+<p>Cons: Less user friendly</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -918,22 +973,22 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="code-order-code-command-feature"><a class="link" href="#code-order-code-command-feature">3.5. <code>order</code> command feature</a></h3>
+<h3 id="code-order-code-command-feature"><a class="link" href="#code-order-code-command-feature">3.6. <code>order</code> command feature</a></h3>
 <div class="sect3">
-<h4 id="what"><a class="link" href="#what">3.5.1. What</a></h4>
+<h4 id="what"><a class="link" href="#what">3.6.1. What</a></h4>
 <div class="paragraph">
 <p>The order command is the core of the application. It allows the program to order the food for the user. At it&#8217;s core,
 it job is to select the most probable food that the user desires and orders it via phone.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="why"><a class="link" href="#why">3.5.2. Why</a></h4>
+<h4 id="why"><a class="link" href="#why">3.6.2. Why</a></h4>
 <div class="paragraph">
 <p>The motivation is that programmers are lazy and that eating food is mandatory even amidst long hacking sessions.
 This command automates the food ordering process with a quick command, that is the <code>order</code> command, streamlining the
@@ -941,7 +996,7 @@ food selecting and ordering process.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="how"><a class="link" href="#how">3.5.3. How</a></h4>
+<h4 id="how"><a class="link" href="#how">3.6.3. How</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/order-command-flow-chart.png" alt="order command flow chart" width="450">
@@ -977,7 +1032,7 @@ other end and order a food with a pre-canned message.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.5.4. Alternatives and future considerations</a></h4>
+<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.6.4. Alternatives and future considerations</a></h4>
 <div class="paragraph">
 <p>A promising alternative is to use an existing API from UberEats or other food ordering services to allow more services
 added such as: delivery time tracking, more restaurants. This would guarantee the service more reliably.</p>
@@ -2671,7 +2726,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 14:46:11 UTC
+Last updated 2018-03-20 16:18:15 UTC
 </div>
 </div>
 </body>
