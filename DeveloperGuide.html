@@ -46,10 +46,11 @@
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
 <li><a href="#proposed-add-shortcuts">3.2. [Proposed] Add Shortcuts</a></li>
-<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
-<li><a href="#code-order-code-command-feature">3.6. <code>order</code> command feature</a></li>
+<li><a href="#configuring-the-user-profile">3.3. Configuring the User Profile</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#code-order-code-command-feature">3.7. <code>order</code> command feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -929,20 +930,97 @@ The sequence of commands he has typed in will be stored in a <code>List</code>. 
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
+<h3 id="configuring-the-user-profile"><a class="link" href="#configuring-the-user-profile">3.3. Configuring the User Profile</a></h3>
+<div class="sect3">
+<h4 id="motivation"><a class="link" href="#motivation">3.3.1. Motivation</a></h4>
+<div class="paragraph">
+<p>It&#8217;s nice to have someone greet you as your friend. HackEat makes its users comfortable and feel
+welcomed whenever they open their app. This is possible because a new feature has been implemented that
+takes in the user&#8217;s name and other information. The user is then greeted upon opening the app.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-to-commands"><a class="link" href="#changes-to-commands">3.3.2. Changes to Commands</a></h4>
+<div class="paragraph">
+<p>A new Command class <code>UserConfigCommand</code> is created which allows the user to type in <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code> to update
+their profile. Thus a new <code>UserConfigCommandParser</code> class was also created to handle the parsing of the user input:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">case</span> UserConfigCommand.COMMAND_WORD:
+    <span class="keyword">return</span> <span class="keyword">new</span> UserConfigCommandParser().parse(arguments);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-to-the-model"><a class="link" href="#changes-to-the-model">3.3.3. Changes to the Model</a></h4>
+<div class="paragraph">
+<p>In order to support the user profile, a new package was created under the <code>Model</code> component, specifically a <code>user</code> package.
+Inside it contains a <code>UserProfile</code> class, which holds the app state of the user&#8217;s profile. <code>Allergy</code> is also a new object
+in HackEat, and so an <code>Allergy</code> class was created in a new <code>allergy</code> package of the <code>Model</code> component. In order to support
+multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="saving-to-storage"><a class="link" href="#saving-to-storage">3.3.4. Saving to Storage</a></h4>
+<div class="paragraph">
+<p>Executing the <code>UserConfigCommand</code> triggers the <code>model#updateUserProfile</code> method, which then posts an event to the <code>EventCenter</code>
+indicating that <code>HackEat</code> data has changed. The model data is then saved to XML format for persistent data.</p>
+</div>
+<div class="paragraph">
+<p>New classes required to support XML of User Profile:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>XMLAdaptedUserProfile</code></p>
+</li>
+<li>
+<p><code>XMLAdaptedAllergy</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="loading-from-storage"><a class="link" href="#loading-from-storage">3.3.5. Loading from storage</a></h4>
+<div class="paragraph">
+<p>This was quite simple. Only one new method was required to be added to the <code>AddressBook</code> class to initialize
+an <code>AddressBook</code> with the loaded <code>UserProfile</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.6. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="code-update-code-instead-of-code-add-code"><a class="link" href="#code-update-code-instead-of-code-add-code"><code>Update</code> instead of <code>Add</code></a></h5>
+<div class="paragraph">
+<p>It was simpler to implement a single <code>AddressBook#updateUserProfile</code> method instead of
+an <code>AddressBook#addUserProfile</code> and an update method. The update method simply sets the current <code>profile</code>
+property in <code>AddressBook</code> to the new incoming <code>profile</code>.</p>
+</div>
+<div class="paragraph">
+<p>By simply replacing the property, you don&#8217;t need to check if the property is not null before
+updating the profile. You also don&#8217;t need to check if the profile is null before choosing to add a new
+profile to the application. Separating add and update functionalities works for Food, but not for profile as the
+additional complexity is unnecessary.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -973,22 +1051,22 @@ The sequence of commands he has typed in will be stored in a <code>List</code>. 
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="code-order-code-command-feature"><a class="link" href="#code-order-code-command-feature">3.6. <code>order</code> command feature</a></h3>
+<h3 id="code-order-code-command-feature"><a class="link" href="#code-order-code-command-feature">3.7. <code>order</code> command feature</a></h3>
 <div class="sect3">
-<h4 id="what"><a class="link" href="#what">3.6.1. What</a></h4>
+<h4 id="what"><a class="link" href="#what">3.7.1. What</a></h4>
 <div class="paragraph">
 <p>The order command is the core of the application. It allows the program to order the food for the user. At it&#8217;s core,
 it job is to select the most probable food that the user desires and orders it via phone.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="why"><a class="link" href="#why">3.6.2. Why</a></h4>
+<h4 id="why"><a class="link" href="#why">3.7.2. Why</a></h4>
 <div class="paragraph">
 <p>The motivation is that programmers are lazy and that eating food is mandatory even amidst long hacking sessions.
 This command automates the food ordering process with a quick command, that is the <code>order</code> command, streamlining the
@@ -996,7 +1074,7 @@ food selecting and ordering process.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="how"><a class="link" href="#how">3.6.3. How</a></h4>
+<h4 id="how"><a class="link" href="#how">3.7.3. How</a></h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/order-command-flow-chart.png" alt="order command flow chart" width="450">
@@ -1032,7 +1110,7 @@ other end and order a food with a pre-canned message.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.6.4. Alternatives and future considerations</a></h4>
+<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.7.4. Alternatives and future considerations</a></h4>
 <div class="paragraph">
 <p>A promising alternative is to use an existing API from UberEats or other food ordering services to allow more services
 added such as: delivery time tracking, more restaurants. This would guarantee the service more reliably.</p>
@@ -2726,7 +2804,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 00:57:49 UTC
+Last updated 2018-03-21 00:58:13 UTC
 </div>
 </div>
 </body>
