@@ -149,7 +149,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         personTags.forEach(tag -> correctTagReferences.add(masterTagObjects.get(tag)));
         return new Food(
                 food.getName(), food.getPhone(), food.getEmail(), food.getAddress(),
-                food.getPrice(), food.getRating() , correctTagReferences);
+                food.getPrice(), food.getRating() , correctTagReferences, food.getAllergies());
     }
 
     /**

@@ -12,6 +12,7 @@ import seedu.address.model.food.Name;
 import seedu.address.model.food.Phone;
 import seedu.address.model.food.Price;
 import seedu.address.model.food.Rating;
+import seedu.address.model.food.allergy.Allergy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,6 +42,7 @@ public class EditFoodDescriptorBuilder {
         descriptor.setPrice(food.getPrice());
         descriptor.setRating(food.getRating());
         descriptor.setTags(food.getTags());
+        descriptor.setAllergies(food.getAllergies());
     }
 
     /**
@@ -98,6 +100,16 @@ public class EditFoodDescriptorBuilder {
     public EditFoodDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code EditFoodDescriptor}
+     * that we are building.
+     */
+    public EditFoodDescriptorBuilder withAllergies(String... allergies) {
+        Set<Allergy> allergySet = Stream.of(allergies).map(Allergy::new).collect(Collectors.toSet());
+        descriptor.setAllergies(allergySet);
         return this;
     }
 

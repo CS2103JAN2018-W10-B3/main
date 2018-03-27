@@ -10,6 +10,7 @@
         <price>$1</price>
         <rating>0</rating>
         <tagged>fried</tagged>
+        <addedAllergies>lactose</addedAllergies>
     </foods>
     <foods>
         <name>Bacon Mousse</name>
@@ -20,6 +21,7 @@
         <rating>1</rating>
         <tagged>avoid</tagged>
         <tagged>fried</tagged>
+        <addedAllergies>lactose</addedAllergies>
     </foods>
     <foods>
         <name>Cake Pops</name>
@@ -28,6 +30,7 @@
         <address>dessert street</address>
         <price>$3</price>
         <rating>2</rating>
+        <addedAllergies>lactose</addedAllergies>
     </foods>
     <foods>
         <name>Dumpling Mousse</name>
@@ -36,6 +39,7 @@
         <address>10th street</address>
         <price>$4</price>
         <rating>3</rating>
+        <addedAllergies>lactose</addedAllergies>
     </foods>
     <foods>
         <name>Egg Tart</name>
@@ -44,6 +48,7 @@
         <address>china ave</address>
         <price>$5</price>
         <rating>4</rating>
+        <addedAllergies>lactose</addedAllergies>
     </foods>
     <foods>
         <name>Fries and Gravy</name>

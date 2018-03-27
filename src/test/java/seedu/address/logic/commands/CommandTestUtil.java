@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -45,6 +46,7 @@ public class CommandTestUtil {
     public static final String VALID_RATING_BANANA = "5";
     public static final String VALID_TAG_NUTS = "nuts";
     public static final String VALID_TAG_FRIED = "fried";
+    public static final String VALID_ALLERGY_LACTOSE = "lactose";
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
@@ -60,6 +62,7 @@ public class CommandTestUtil {
     public static final String RATING_DESC_BANANA = " " + PREFIX_RATING + VALID_RATING_BANANA;
     public static final String TAG_DESC_FRIED = " " + PREFIX_TAG + VALID_TAG_FRIED;
     public static final String TAG_DESC_NUTS = " " + PREFIX_TAG + VALID_TAG_NUTS;
+    public static final String ALLERGY_DESC_LACTOSE = " " + PREFIX_ALLERGIES + VALID_ALLERGY_LACTOSE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Panc&ke"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -68,6 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_PRICE_DESC = " " + PREFIX_PRICE + "e.40"; // letters not allowed for prices
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "9"; // out of range
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "poise*"; // '*' not allowed in tags
+    public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGIES + "#peanut"; // '#' not allowed in allergy
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -78,11 +82,12 @@ public class CommandTestUtil {
     static {
         DESC_APPLE = new EditFoodDescriptorBuilder().withName(VALID_NAME_APPLE)
                 .withPhone(VALID_PHONE_APPLE).withEmail(VALID_EMAIL_APPLE).withAddress(VALID_ADDRESS_APPLE)
-                .withPrice(VALID_PRICE_APPLE).withRating(VALID_RATING_APPLE).withTags(VALID_TAG_FRIED).build();
+                .withPrice(VALID_PRICE_APPLE).withRating(VALID_RATING_APPLE).withTags(VALID_TAG_FRIED)
+                .withAllergies(VALID_ALLERGY_LACTOSE).build();
         DESC_BANANA = new EditFoodDescriptorBuilder().withName(VALID_NAME_BANANA)
                 .withPhone(VALID_PHONE_BANANA).withEmail(VALID_EMAIL_BANANA).withAddress(VALID_ADDRESS_BANANA)
                 .withPrice(VALID_PRICE_BANANA).withRating(VALID_RATING_BANANA)
-                .withTags(VALID_TAG_NUTS, VALID_TAG_FRIED).build();
+                .withTags(VALID_TAG_NUTS, VALID_TAG_FRIED).withAllergies(VALID_ALLERGY_LACTOSE).build();
     }
 
     /**

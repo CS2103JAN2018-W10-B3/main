@@ -3,8 +3,10 @@ package seedu.address.model.food;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +25,19 @@ import seedu.address.model.food.exceptions.FoodNotFoundException;
 public class UniqueFoodList implements Iterable<Food> {
 
     private final ObservableList<Food> internalList = FXCollections.observableArrayList();
+
+    public UniqueFoodList() {}
+
+    /**
+     * Creates a UniqueFoodList using given foods.
+     * Enforces no nulls.
+     */
+    public UniqueFoodList(Set<Food> foods) {
+        requireAllNonNull(foods);
+        internalList.addAll(foods);
+
+        assert CollectionUtil.elementsAreUnique(internalList);
+    }
 
     /**
      * Returns true if the list contains an equivalent food as the given argument.
@@ -92,6 +107,15 @@ public class UniqueFoodList implements Iterable<Food> {
             replacement.add(food);
         }
         setFoods(replacement);
+    }
+
+    /**
+     * Returns all Foods in this list as a Set.
+     * This set is mutable and change-insulated against the internal list.
+     */
+    public Set<Food> toSet() {
+        assert CollectionUtil.elementsAreUnique(internalList);
+        return new HashSet<>(internalList);
     }
 
     /**

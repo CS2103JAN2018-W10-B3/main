@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -28,6 +29,7 @@ import seedu.address.model.food.Name;
 import seedu.address.model.food.Phone;
 import seedu.address.model.food.Price;
 import seedu.address.model.food.Rating;
+import seedu.address.model.food.allergy.Allergy;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
 import seedu.address.model.food.exceptions.FoodNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -49,6 +51,7 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE] "
             + "[" + PREFIX_RATING + "RATING]"
+            + "[" + PREFIX_ALLERGIES + "ALLERGY]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -115,9 +118,10 @@ public class EditCommand extends UndoableCommand {
         Price updatedPrice = editFoodDescriptor.getPrice().orElse(foodToEdit.getPrice());
         Rating updatedRating = editFoodDescriptor.getRating().orElse(foodToEdit.getRating());
         Set<Tag> updatedTags = editFoodDescriptor.getTags().orElse(foodToEdit.getTags());
+        Set<Allergy> updatedAllergies = editFoodDescriptor.getAllergies().orElse(foodToEdit.getAllergies());
 
         return new Food(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedPrice, updatedRating,
-                updatedTags);
+                updatedTags, updatedAllergies);
     }
 
     @Override
@@ -151,6 +155,7 @@ public class EditCommand extends UndoableCommand {
         private Price price;
         private Rating rating;
         private Set<Tag> tags;
+        private Set<Allergy> allergies;
 
         public EditFoodDescriptor() {}
 
@@ -166,6 +171,7 @@ public class EditCommand extends UndoableCommand {
             setPrice(toCopy.price);
             setRating(toCopy.rating);
             setTags(toCopy.tags);
+            setAllergies(toCopy.allergies);
         }
 
         /**
@@ -173,7 +179,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.price, this.rating,
-                    this.tags);
+                    this.tags, this.allergies);
         }
 
         public void setName(Name name) {
@@ -241,6 +247,23 @@ public class EditCommand extends UndoableCommand {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code allergies} to this object's {@code allergies}.
+         * A defensive copy of {@code allergies} is used internally.
+         */
+        public void setAllergies(Set<Allergy> allergies) {
+            this.allergies = (allergies != null) ? new HashSet<>(allergies) : null;
+        }
+
+        /**
+         * Returns an unmodifiable allergy set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code allergies} is null.
+         */
+        public Optional<Set<Allergy>> getAllergies() {
+            return (allergies != null) ? Optional.of(Collections.unmodifiableSet(allergies)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -262,7 +285,8 @@ public class EditCommand extends UndoableCommand {
                     && getAddress().equals(e.getAddress())
                     && getPrice().equals(e.getPrice())
                     && getRating().equals(e.getRating())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getAllergies().equals(e.getAllergies());
         }
     }
 }

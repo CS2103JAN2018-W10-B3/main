@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -20,6 +21,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditFoodDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.food.allergy.Allergy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +38,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_PRICE, PREFIX_RATING, PREFIX_TAG);
+                        PREFIX_PRICE, PREFIX_RATING, PREFIX_TAG, PREFIX_ALLERGIES);
 
         Index index;
 
@@ -55,6 +57,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE)).ifPresent(editFoodDescriptor::setPrice);
             ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING)).ifPresent(editFoodDescriptor::setRating);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFoodDescriptor::setTags);
+            parseAllergiesForEdit(argMultimap.getAllValues(PREFIX_ALLERGIES))
+                    .ifPresent(editFoodDescriptor::setAllergies);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
         }
@@ -79,6 +83,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> allergies} into a {@code Set<Tag>} if {@code allergies} is non-empty.
+     * If {@code allergies} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Allergy>} containing zero allergies.
+     */
+    private Optional<Set<Allergy>> parseAllergiesForEdit(Collection<String> allergies) throws IllegalValueException {
+        assert allergies != null;
+
+        if (allergies.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> allergySet = allergies.size() == 1 && allergies.contains("")
+                ? Collections.emptySet() : allergies;
+        return Optional.of(ParserUtil.parseAllergies(allergySet));
     }
 
 }

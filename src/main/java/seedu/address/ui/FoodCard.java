@@ -44,6 +44,8 @@ public class FoodCard extends UiPart<Region> {
     private Label rating;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane allergies;
 
     public FoodCard(Food food, int displayedIndex) {
         super(FXML);
@@ -56,6 +58,7 @@ public class FoodCard extends UiPart<Region> {
         email.setText(food.getEmail().value);
         rating.setText(Rating.displayString(food.getRating().value));
         food.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        food.getAllergies().forEach(allergy -> allergies.getChildren().add(new Label(allergy.allergyName)));
     }
 
     @Override

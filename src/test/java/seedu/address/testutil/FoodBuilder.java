@@ -10,6 +10,7 @@ import seedu.address.model.food.Name;
 import seedu.address.model.food.Phone;
 import seedu.address.model.food.Price;
 import seedu.address.model.food.Rating;
+import seedu.address.model.food.allergy.Allergy;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +27,7 @@ public class FoodBuilder {
     public static final String DEFAULT_PRICE = Price.DEFAULT_PRICE;
     public static final String DEFAULT_RATING = Rating.DEFAULT_RATING;
     public static final String DEFAULT_TAGS = "fried";
+    public static final String DEFAULT_ALLERGIES = "lactose";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class FoodBuilder {
     private Price price;
     private Rating rating;
     private Set<Tag> tags;
+    private Set<Allergy> allergies;
 
     public FoodBuilder() {
         name = new Name(DEFAULT_NAME);
@@ -43,6 +46,7 @@ public class FoodBuilder {
         price = new Price(DEFAULT_PRICE);
         rating = new Rating(DEFAULT_RATING);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
+        allergies = SampleDataUtil.getAllergySet(DEFAULT_ALLERGIES);
     }
 
     /**
@@ -56,6 +60,7 @@ public class FoodBuilder {
         price = foodToCopy.getPrice();
         rating = foodToCopy.getRating();
         tags = new HashSet<>(foodToCopy.getTags());
+        allergies = new HashSet<>(foodToCopy.getAllergies());
     }
 
     /**
@@ -114,8 +119,16 @@ public class FoodBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Food} that we are building.
+     */
+    public FoodBuilder withAllergies(String ... allergies) {
+        this.allergies = SampleDataUtil.getAllergySet(allergies);
+        return this;
+    }
+
     public Food build() {
-        return new Food(name, phone, email, address, price, rating, tags);
+        return new Food(name, phone, email, address, price, rating, tags, allergies);
     }
 
 }

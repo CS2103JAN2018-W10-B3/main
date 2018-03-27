@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.food.allergy.Allergy;
+import seedu.address.model.food.allergy.UniqueAllergyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
@@ -22,13 +24,15 @@ public class Food {
     private final Price price;
     private final Rating rating;
 
+    private final UniqueAllergyList allergies;
     private final UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Phone phone, Email email, Address address, Price price, Rating rating, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Food(Name name, Phone phone, Email email, Address address, Price price, Rating rating,
+                Set<Tag> tags, Set<Allergy> allergies) {
+        requireAllNonNull(name, phone, email, address, price, rating, tags, allergies);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -37,6 +41,7 @@ public class Food {
         this.rating = rating;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
+        this.allergies = new UniqueAllergyList(allergies);
     }
 
     public Name getName() {
@@ -62,6 +67,15 @@ public class Food {
     public Rating getRating() {
         return rating;
     }
+
+    /**
+     * Returns an immutable allergy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Allergy> getAllergies() {
+        return Collections.unmodifiableSet(allergies.toSet());
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -92,7 +106,7 @@ public class Food {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, price, rating, tags);
+        return Objects.hash(name, phone, email, address, price, rating, tags, allergies);
     }
 
     @Override
@@ -109,7 +123,9 @@ public class Food {
                 .append(getPrice())
                 .append(" Rating: ")
                 .append(getRating())
-                .append(" Tags: ");
+                .append(" Allergies: ");
+        getAllergies().forEach(builder::append);
+        builder.append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }

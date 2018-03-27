@@ -16,6 +16,7 @@ import seedu.address.model.food.Name;
 import seedu.address.model.food.Phone;
 import seedu.address.model.food.Price;
 import seedu.address.model.food.Rating;
+import seedu.address.model.food.allergy.Allergy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +41,8 @@ public class XmlAdaptedFood {
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
+    @XmlElement
+    private List<XmlAdaptedAllergy> addedAllergies = new ArrayList<>();
 
     /**
      * Constructs an XmlAdaptedFood.
@@ -51,7 +54,7 @@ public class XmlAdaptedFood {
      * Constructs an {@code XmlAdaptedFood} with the given food details.
      */
     public XmlAdaptedFood(String name, String phone, String email, String address, String price,
-                          String rating, List<XmlAdaptedTag> tagged) {
+                          String rating, List<XmlAdaptedTag> tagged, List<XmlAdaptedAllergy> addedAllergies) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,6 +63,9 @@ public class XmlAdaptedFood {
         this.rating = rating;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
+        }
+        if (addedAllergies != null) {
+            this.addedAllergies = new ArrayList<>(addedAllergies);
         }
     }
 
@@ -79,6 +85,9 @@ public class XmlAdaptedFood {
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
         }
+        for (Allergy allergy: source.getAllergies()) {
+            addedAllergies.add(new XmlAdaptedAllergy(allergy));
+        }
     }
 
     /**
@@ -88,8 +97,14 @@ public class XmlAdaptedFood {
      */
     public Food toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Allergy> foodAllergies = new ArrayList<>();
+
         for (XmlAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        for (XmlAdaptedAllergy allergy: addedAllergies) {
+            foodAllergies.add(allergy.toModelType());
         }
 
         if (this.name == null) {
@@ -141,7 +156,8 @@ public class XmlAdaptedFood {
         final Rating rating = new Rating(this.rating);
 
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Food(name, phone, email, address, price, rating, tags);
+        final Set<Allergy> allergies = new HashSet<>(foodAllergies);
+        return new Food(name, phone, email, address, price, rating, tags, allergies);
     }
 
     @Override
@@ -161,6 +177,7 @@ public class XmlAdaptedFood {
                 && Objects.equals(address, otherFood.address)
                 && Objects.equals(price, otherFood.price)
                 && Objects.equals(rating, otherFood.rating)
-                && tagged.equals(otherFood.tagged);
+                && tagged.equals(otherFood.tagged)
+                && addedAllergies.equals(otherFood.addedAllergies);
     }
 }
