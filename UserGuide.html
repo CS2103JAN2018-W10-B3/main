@@ -39,11 +39,12 @@
 <li><a href="#undoing-previous-command-code-undo-code">3.9. Undoing previous command : <code>undo</code></a></li>
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.10. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#setting-user-profile-code-userconfig-code">3.11. Setting user profile: <code>userconfig</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.13. Order food: <code>order</code> [Proposed to finish in v1.5]</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.15. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#editing-user-profile-code-edituser-code">3.12. Editing user profile: <code>edituser</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.14. Order food: <code>order</code> [Proposed to finish in v1.5]</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.16. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -501,14 +502,52 @@ Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.12. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="editing-user-profile-code-edituser-code"><a class="link" href="#editing-user-profile-code-edituser-code">3.12. Editing user profile: <code>edituser</code></a></h3>
+<div class="paragraph">
+<p>Edits user details
+Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGIES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing allergies, the existing allergies of the user will be removed i.e adding of allergies is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all allergies by typing <code>alg/</code> without specifying any allergies after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edituser p/61234567 e/anthony@example.com</code><br>
+Edits the phone number and email address of the user to be <code>61234567</code> and <code>anthony@example.com</code> respectively.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.13. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from HackEat.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.13. Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
+<h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.14. Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
 <div class="paragraph">
 <p>Orders food given with or without an index. If no index is given, a food will be chosen for you. May take some time as
 phone call is in progress. Otherwise, will order the food at the specified index.</p>
@@ -518,21 +557,21 @@ phone call is in progress. Otherwise, will order the food at the specified index
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.14. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.15. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.15. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.16. Saving the data</a></h3>
 <div class="paragraph">
 <p>HackEat data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.16. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.17. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
@@ -598,7 +637,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-03 16:52:10 UTC
+Last updated 2018-04-04 00:16:22 UTC
 </div>
 </div>
 </body>
