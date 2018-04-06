@@ -1077,7 +1077,7 @@ food selecting and ordering process.</p>
 <h4 id="how"><a class="link" href="#how">3.7.3. How</a></h4>
 <div class="imageblock">
 <div class="content">
-<img src="images/order-command-flow-chart.png" alt="order command flow chart" width="450">
+<img src="images/order-command-flow-chart.png" alt="order command flow chart" width="600">
 </div>
 </div>
 <div class="olist arabic">
@@ -1101,7 +1101,7 @@ allergies.</p>
 </li>
 <li>
 <p>TwiML (or equivalent service) will be used to translate text to voice to communicate with the restaurant on the
-other end and order a food with a pre-canned message.</p>
+other end and order a food with a pre-canned message. Shown below:</p>
 </li>
 </ol>
 </div>
@@ -1110,7 +1110,85 @@ other end and order a food with a pre-canned message.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.7.4. Alternatives and future considerations</a></h4>
+<h4 id="current-implementations"><a class="link" href="#current-implementations">3.7.4. Current implementations</a></h4>
+<div class="sect4">
+<h5 id="food-selector"><a class="link" href="#food-selector">Food Selector</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="images/order-command--food-selector.png" alt="order command  food selector" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Foods are given scores based on ratings and price</p>
+</li>
+<li>
+<p>They are aligned together with a running score value and added to a list</p>
+</li>
+<li>
+<p>They are automatically ordered by size this way</p>
+</li>
+<li>
+<p>A random number is selected between 0 and the max running score</p>
+</li>
+<li>
+<p>This will select a food probabilistically, based on the scores.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="order-manager"><a class="link" href="#order-manager">Order Manager</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="images/order-command--order-manager.png" alt="order command  order manager" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Architecture to allow dynamic voice calls to restaurants based on user profile and food.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client first sends XML data to REST API path /create/</p>
+</li>
+<li>
+<p>REST API parses the data, and generates a handler at a mirror address eg. /order/</p>
+</li>
+<li>
+<p>Once a response is received from server, the client then creates a call using the Twilio API, specifying the path of
+XML data to fetch, under /order/:id</p>
+</li>
+<li>
+<p>This will prompt Twilio to call the specified phone from the client, using the API keys etc.</p>
+</li>
+<li>
+<p>Twilio API will visit the URL specified and fetch the XML data and parse into computer generated voice via TwiML API.</p>
+</li>
+<li>
+<p>Restaurant will pick up and receive message of the order, prepare food, and send to address.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.5. Design considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Voice call for ordering food was chosen as it is Universal to all restaurants that deliver food. Some restaurants do
+no have Uber Eats or Food Panda service.</p>
+</li>
+<li>
+<p>A REST API was chosen as the server to relay XML data instead of allowing a tunnel to localhost as it is more secure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">3.7.6. Alternatives and future considerations</a></h4>
 <div class="paragraph">
 <p>A promising alternative is to use an existing API from UberEats or other food ordering services to allow more services
 added such as: delivery time tracking, more restaurants. This would guarantee the service more reliably.</p>
@@ -2804,7 +2882,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-06 07:18:25 UTC
+Last updated 2018-04-06 16:28:08 UTC
 </div>
 </div>
 </body>
