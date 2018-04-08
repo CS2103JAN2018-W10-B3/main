@@ -51,6 +51,7 @@
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 <li><a href="#code-order-code-command-feature">3.7. <code>order</code> command feature</a></li>
+<li><a href="#interactive-code-add-code-feature">3.8. Interactive <code>add</code> feature</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -943,13 +944,7 @@ takes in the user&#8217;s name and other information. The user is then greeted u
 <h4 id="changes-to-commands"><a class="link" href="#changes-to-commands">3.3.2. Changes to Commands</a></h4>
 <div class="paragraph">
 <p>A new Command class <code>UserConfigCommand</code> is created which allows the user to type in <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code> to update
-their profile. Thus a new <code>UserConfigCommandParser</code> class was also created to handle the parsing of the user input:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">case</span> UserConfigCommand.COMMAND_WORD:
-    <span class="keyword">return</span> <span class="keyword">new</span> UserConfigCommandParser().parse(arguments);</code></pre>
-</div>
+their profile.</p>
 </div>
 </div>
 <div class="sect3">
@@ -959,6 +954,11 @@ their profile. Thus a new <code>UserConfigCommandParser</code> class was also cr
 Inside it contains a <code>UserProfile</code> class, which holds the app state of the user&#8217;s profile. <code>Allergy</code> is also a new object
 in HackEat, and so an <code>Allergy</code> class was created in a new <code>allergy</code> package of the <code>Model</code> component. In order to support
 multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/model-component-with-user-profile.png" alt="model component with user profile" width="600">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1192,6 +1192,84 @@ no have Uber Eats or Food Panda service.</p>
 <div class="paragraph">
 <p>A promising alternative is to use an existing API from UberEats or other food ordering services to allow more services
 added such as: delivery time tracking, more restaurants. This would guarantee the service more reliably.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="interactive-code-add-code-feature"><a class="link" href="#interactive-code-add-code-feature">3.8. Interactive <code>add</code> feature</a></h3>
+<div class="sect3">
+<h4 id="what-2"><a class="link" href="#what-2">3.8.1. What</a></h4>
+<div class="paragraph">
+<p>Users can type in <code>add</code>, and then the system will take the user through a set of prompts to get the information. This
+is a more natural way of using the CLI to get food.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-2"><a class="link" href="#why-2">3.8.2. Why</a></h4>
+<div class="paragraph">
+<p>Our goal is to reduce the amount of thinking that programmers have to do to get the food that they want. Memorising and
+typing out the entire <code>add</code> command requires extra cognitive effort.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-2"><a class="link" href="#how-2">3.8.3. How</a></h4>
+<div class="paragraph">
+<p>It was quickly realised that extra application state was necessary for managing interactive flows between a user and the
+system. This extra state includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Knowing if a user is actively engaged in an interaction, so that new inputs are interpreted in the context of this
+existing interaction</p>
+</li>
+<li>
+<p>Knowing how far a user has progressed in the active interaction</p>
+</li>
+<li>
+<p>Intermediate application data that has not yet been committed to storage (e.g. the first attribute <code>Name</code> needs to
+be stored in memory until the last attribute is read from the user, at which point the whole <code>Food</code> with all its
+attributes can be saved in the <code>Storage</code> component)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.8.4. Current implementation</a></h4>
+<div class="paragraph">
+<p>The state and logic that handle the above requirements are implemented in the abstract <code>Session</code> class as well as its
+concrete, command-specific child classes (e.g. <code>SessionAddCommand</code>).</p>
+</div>
+<div class="sect4">
+<h5 id="simplified-sequence-diagram-for-starting-or-continuing-a-code-session-code"><a class="link" href="#simplified-sequence-diagram-for-starting-or-continuing-a-code-session-code">Simplified sequence diagram for starting or continuing a <code>Session</code></a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="images/add-command-interactive-start.png" alt="add command interactive start" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>The abstract <code>Session</code> class provides the shared methods that control the logical flow of any interaction.
+The abstract methods <code>Session#parseInputForMultivaluedField</code> and <code>Session#parseInputForField</code> are overidden
+by concrete subclasses of <code>Session</code> because each type of <code>Command</code> needs to parse and store its</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.5. Design considerations</a></h4>
+<div class="paragraph">
+<p>It was difficult to choose where to place the <code>Session</code>, <code>SessionAddCommand</code>, <code>SessionManager</code> and <code>SessionInterface</code>
+interface and classes. These classes and interface handle both application data (i.e. they should belong in the <code>Model</code>)
+as well as text parsing (i.e. they could also belong in the <code>Logic</code> component). We opted for the simplistic solution of
+placing it all in the <code>Model</code> component, with some coupling with the <code>Command</code> class which belongs to the <code>Logic</code>
+component.</p>
+</div>
+<div class="paragraph">
+<p>An alternative architectural design would be to have <code>SessionData</code> and <code>SessionLogic</code> separated across <code>Model</code> and
+<code>Logic</code> components. The advantage of this design is that it adheres to the strict definitions of the functions
+of each of these components. The disadvantage, which is much more costly, is the increased coupling between these
+separate components and classes. It is much more convenient to simply combine the state and logic for `Session`s in a
+single component to reduce coupling and increase cohesion, making developer efficiency higher and code organisation more
+simple.</p>
 </div>
 </div>
 </div>
@@ -2882,7 +2960,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-06 16:28:08 UTC
+Last updated 2018-04-08 08:01:24 UTC
 </div>
 </div>
 </body>
