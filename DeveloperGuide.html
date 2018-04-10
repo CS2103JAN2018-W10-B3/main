@@ -45,7 +45,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-add-shortcuts">3.2. [Proposed] Add Shortcuts</a></li>
+<li><a href="#v2-0-add-shortcuts">3.2. [V2.0] Add Shortcuts</a></li>
 <li><a href="#configuring-the-user-profile">3.3. Configuring the User Profile</a></li>
 <li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
@@ -877,7 +877,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-add-shortcuts"><a class="link" href="#proposed-add-shortcuts">3.2. [Proposed] Add Shortcuts</a></h3>
+<h3 id="v2-0-add-shortcuts"><a class="link" href="#v2-0-add-shortcuts">3.2. [V2.0] Add Shortcuts</a></h3>
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
 <div class="paragraph">
@@ -953,12 +953,8 @@ their profile.</p>
 <p>In order to support the user profile, a new package was created under the <code>Model</code> component, specifically a <code>user</code> package.
 Inside it contains a <code>UserProfile</code> class, which holds the app state of the user&#8217;s profile. <code>Allergy</code> is also a new object
 in HackEat, and so an <code>Allergy</code> class was created in a new <code>allergy</code> package of the <code>Model</code> component. In order to support
-multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/model-component-with-user-profile.png" alt="model component with user profile" width="600">
-</div>
+multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.
+image::model-component-with-user-profile.png[width="600"]</p>
 </div>
 </div>
 <div class="sect3">
@@ -2959,7 +2955,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 16:02:23 UTC
+Last updated 2018-04-10 17:08:41 UTC
 </div>
 </div>
 </body>
