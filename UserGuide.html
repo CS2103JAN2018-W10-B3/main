@@ -41,12 +41,13 @@
 <li><a href="#redoing-the-previously-undone-command-code-redo-code">3.11. Redoing the previously undone command : <code>redo</code></a></li>
 <li><a href="#setting-user-profile-code-userconfig-code">3.12. Setting user profile: <code>userconfig</code></a></li>
 <li><a href="#editing-user-profile-code-edituser-code">3.13. Editing user profile: <code>edituser</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.15. Order food: <code>order</code> [Proposed to finish in v1.5]</a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">3.17. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></li>
-<li><a href="#natural-language-chatbot-code-coming-in-v2-0-code">3.19. Natural Language Chatbot <code>[coming in v2.0]</code></a></li>
+<li><a href="#setting-a-profile-picture-code-changepic-code">3.14. Setting a profile picture: <code>changepic</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.16. Order food: <code>order</code> [Proposed to finish in v1.5]</a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">3.18. Saving the data</a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.19. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#natural-language-chatbot-code-coming-in-v2-0-code">3.20. Natural Language Chatbot <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -280,7 +281,7 @@ Format: <code>list</code></p>
 <h3 id="editing-a-food-code-edit-code"><a class="link" href="#editing-a-food-code-edit-code">3.5. Editing a food : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing food in HackEat.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RATING] [pr/PRICE] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -573,7 +574,7 @@ Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
 <h3 id="editing-user-profile-code-edituser-code"><a class="link" href="#editing-user-profile-code-edituser-code">3.13. Editing user profile: <code>edituser</code></a></h3>
 <div class="paragraph">
 <p>Edits user details
-Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGIES]</code></p>
+Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -601,21 +602,30 @@ Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGIES]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>edituser p/61234567 e/anthony@example.com</code><br>
-Edits the phone number and email address of the user to be <code>61234567</code> and <code>anthony@example.com</code> respectively.</p>
+<p><code>edituser p/61234567 a/Blk 654 Cashew Road #03-92 Singapore 978654</code><br>
+Edits the phone number and address of the user to be <code>61234567</code> and <code>Blk 654 Cashew Road #03-92 Singapore 978654</code> respectively.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.14. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="setting-a-profile-picture-code-changepic-code"><a class="link" href="#setting-a-profile-picture-code-changepic-code">3.14. Setting a profile picture: <code>changepic</code></a></h3>
+<div class="paragraph">
+<p>Changes a user&#8217;s profile picture to one that the user has selected. Works best for square images.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>changepic</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">3.15. Clearing all entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from HackEat.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.15. Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
+<h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">3.16. Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
 <div class="paragraph">
 <p>Orders food given with or without an index. If no index is given, a food will be chosen for you. May take some time as
 phone call is in progress. Otherwise, will order the food at the specified index.</p>
@@ -638,27 +648,27 @@ phone call is in progress. Otherwise, will order the food at the specified index
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.16. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.17. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.17. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">3.18. Saving the data</a></h3>
 <div class="paragraph">
 <p>HackEat data are saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.18. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.19. Encrypting data files <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="natural-language-chatbot-code-coming-in-v2-0-code"><a class="link" href="#natural-language-chatbot-code-coming-in-v2-0-code">3.19. Natural Language Chatbot <code>[coming in v2.0]</code></a></h3>
+<h3 id="natural-language-chatbot-code-coming-in-v2-0-code"><a class="link" href="#natural-language-chatbot-code-coming-in-v2-0-code">3.20. Natural Language Chatbot <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>You can chat with HackEat without using strictly-formatted commands. Just like chatting with a human :)
 Our smart AI algorithm will understand what you mean, and what you want to eat (really!).</p>
@@ -735,7 +745,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 02:36:24 UTC
+Last updated 2018-04-10 05:46:51 UTC
 </div>
 </div>
 </body>
