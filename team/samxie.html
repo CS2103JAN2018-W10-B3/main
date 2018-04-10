@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Sam Xie - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Sam Xie - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-hackeat"><a class="link" href="#project-hackeat">PROJECT: HackEat</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Formerly AddressBook - Level 4, a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+</div>
+<div class="paragraph">
+<p>Through a 6 week transformation, this software is now known as HackEat.</p>
+</div>
+<div class="paragraph">
+<p><em>Start of Extract [from: Read Me] written by Jackson Huang</em></p>
+</div>
+<div class="paragraph">
+<p>HackEat is a next-gen food recommendation and ordering app for the hackers, the programmers, the creators of world bustling and bursting with world-changing ideas but running short on time ⏰⏳.</p>
+</div>
+<div class="paragraph">
+<p>Perfect for the busy software developer or desk hermit: Use CLI commands to accelerate the chore of finding the right food.</p>
+</div>
+<div class="paragraph">
+<p>HackEat takes the stress, thinking and time-waste out of deciding what to eat. Order your food in style with commands like <code>order</code> to stay in the zone even when you’re not programming.</p>
+</div>
+<div class="paragraph">
+<p><em>End of Extract [from: Read Me] written by Jackson Huang</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Optional email and address fields</p>
+</li>
+<li>
+<p>Revamped test cases to be Food instead of Persons</p>
+</li>
+<li>
+<p>Display price and ratings in UI</p>
+</li>
+<li>
+<p>Changed Logo</p>
+</li>
+<li>
+<p>Added Ratings field</p>
+</li>
+<li>
+<p>Added Order Command</p>
+</li>
+<li>
+<p>Implemented server-side REST API for ordering</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Found here: <a href="https://github.com/CS2103JAN2018-W10-B3/hackeat-server" class="bare">https://github.com/CS2103JAN2018-W10-B3/hackeat-server</a></p>
+</li>
+<li>
+<p>Configured to be hosted on Heroku on <a href="https://mysterious-temple-83678.herokuapp.com/" class="bare">https://mysterious-temple-83678.herokuapp.com/</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Implemented a Food selection algorithm</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
+<div class="paragraph">
+<p>Orders food given with or without an index. If no index is given, a food will be chosen for you. May take some time as
+phone call is in progress. Otherwise, will order the food at the specified index.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>order [INDEX]</code> or <code>order</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>order 2</code> orders the second listed food</p>
+</li>
+<li>
+<p><code>order</code> orders a heuristically selected food from listed food</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="code-order-code-command-feature"><a class="link" href="#code-order-code-command-feature"><code>order</code> command feature</a></h3>
+<div class="sect3">
+<h4 id="what"><a class="link" href="#what">What</a></h4>
+<div class="paragraph">
+<p>The order command is the core of the application. It allows the program to order the food for the user. At it&#8217;s core,
+it job is to select the most probable food that the user desires and orders it via phone.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why"><a class="link" href="#why">Why</a></h4>
+<div class="paragraph">
+<p>The motivation is that programmers are lazy and that eating food is mandatory even amidst long hacking sessions.
+This command automates the food ordering process with a quick command, that is the <code>order</code> command, streamlining the
+food selecting and ordering process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how"><a class="link" href="#how">How</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/order-command-flow-chart.png" alt="order command flow chart" width="600">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Order command searches through existing Foods in the HackEat book</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Within each Food, a score is derived based on number of factors such as: times ordered, mood, rating, price and
+allergies.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The foods with a score that is similar (within a given threshold) is randomly or heuristically chosen.</p>
+</li>
+<li>
+<p>The program will initiate a phone call via Twillio (or an equivalent service) to the chosen food&#8217;s phone number.</p>
+</li>
+<li>
+<p>TwiML (or equivalent service) will be used to translate text to voice to communicate with the restaurant on the
+other end and order a food with a pre-canned message. Shown below:</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The restaurant will then send the food over and the user will pay for the food.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementations"><a class="link" href="#current-implementations">Current implementations</a></h4>
+<div class="sect4">
+<h5 id="food-selector"><a class="link" href="#food-selector">Food Selector</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/order-command--food-selector.png" alt="order command  food selector" width="600">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Foods are given scores based on ratings and price</p>
+</li>
+<li>
+<p>They are aligned together with a running score value and added to a list</p>
+</li>
+<li>
+<p>They are automatically ordered by size this way</p>
+</li>
+<li>
+<p>A random number is selected between 0 and the max running score</p>
+</li>
+<li>
+<p>This will select a food probabilistically, based on the scores.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="order-manager"><a class="link" href="#order-manager">Order Manager</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/order-command--order-manager.png" alt="order command  order manager" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Architecture to allow dynamic voice calls to restaurants based on user profile and food.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Client first sends XML data to REST API path /create/</p>
+</li>
+<li>
+<p>REST API parses the data, and generates a handler at a mirror address eg. /order/</p>
+</li>
+<li>
+<p>Once a response is received from server, the client then creates a call using the Twilio API, specifying the path of
+XML data to fetch, under /order/:id</p>
+</li>
+<li>
+<p>This will prompt Twilio to call the specified phone from the client, using the API keys etc.</p>
+</li>
+<li>
+<p>Twilio API will visit the URL specified and fetch the XML data and parse into computer generated voice via TwiML API.</p>
+</li>
+<li>
+<p>Restaurant will pick up and receive message of the order, prepare food, and send to address.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Voice call for ordering food was chosen as it is Universal to all restaurants that deliver food. Some restaurants do
+no have Uber Eats or Food Panda service.</p>
+</li>
+<li>
+<p>A REST API was chosen as the server to relay XML data instead of allowing a tunnel to localhost as it is more secure.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-and-future-considerations"><a class="link" href="#alternatives-and-future-considerations">Alternatives and future considerations</a></h4>
+<div class="paragraph">
+<p>A promising alternative is to use an existing API from UberEats or other food ordering services to allow more services
+added such as: delivery time tracking, more restaurants. This would guarantee the service more reliably.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="future-proposals"><a class="link" href="#future-proposals">Future proposals</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="smarter-ordering-ai-agent"><a class="link" href="#smarter-ordering-ai-agent">Smarter ordering AI agent</a></h3>
+<div class="paragraph">
+<p>Possibly implement smarter speech with <code>&lt;Gather&gt;</code> and <code>&lt;Redirect&gt;</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>&lt;Gather&gt;</code> gathers data from user in form of speech, and posts to the url /create/:id/response at the REST API.</p>
+</li>
+<li>
+<p>API parses the information and generates new XML data specific to the response at /order/:id/response.</p>
+</li>
+<li>
+<p><code>&lt;Redirect&gt;</code> redirects chat flow to /order/:id/response and retrieves XML data and confirms, repeats or declines the order.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>API Links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>&lt;Gather&gt;</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.twilio.com/docs/voice/twiml/gather" class="bare">https://www.twilio.com/docs/voice/twiml/gather</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>&lt;Redirect&gt;</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.twilio.com/docs/voice/twiml/redirect" class="bare">https://www.twilio.com/docs/voice/twiml/redirect</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-10 07:59:11 UTC
+</div>
+</div>
+</body>
+</html>
