@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Jackson Huang - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Jackson Huang - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-hackeat"><a class="link" href="#project-hackeat">PROJECT: HackEat</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For our CS2103 Software Engineering module at the National University of Singapore, our team of three morphed an AddressBook Java application into a food ordering application called HackEat (described next). The aim of this module was to practice important aspects of software engineering, including working with a large codebase (AddressBook started off as 10k Lines of Code), writing tests, using version control and practising project management using GitHub.</p>
+</div>
+<div class="paragraph">
+<p>HackEat is a next-gen food recommendation and ordering app for the hackers, the programmers, the creators of world bustling and bursting with world-changing ideas but running short on time ⏰⏳.</p>
+</div>
+<div class="paragraph">
+<p>Perfect for the busy software developer or desk hermit: Use CLI commands to accelerate the chore of finding the right food.</p>
+</div>
+<div class="paragraph">
+<p>HackEat takes the stress, thinking and time-waste out of deciding what to eat. Order your food in style with commands like <code>order</code> to stay in the zone even when you’re not programming.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Major enhancement: implemented architecture for interactive commands</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it is: the user can <code>add</code> new foods by responding to the application&#8217;s prompts and questions.</p>
+</li>
+<li>
+<p>Justification: We want to make an app that takes as little cognitive effort as possible to order and manage food intake. The complex format-based commands require typing extra formatting tags (e.g. <code>n/ p/ a/</code>), which takes extra cognitive effort. An interactive and natural chat-like system makes it much easier and faster to add, and in future, edit and order food.</p>
+</li>
+<li>
+<p>Highlights: This was a challenging feature to design. I used sequence diagrams and architectural diagrams to initially understand the problem. The idea of using a Session to track the state of interactions occurred to me only after considering other options.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minor enhancement: added a User Profile and UserConfig command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it is: the user can configure his/her User Profile, popualting it with the user&#8217;s name, address, phone and allergies.</p>
+</li>
+<li>
+<p>Justification: This feature improves user experience because interactions can be more personalised. In addition, this minor feature
+is also essential to the food ordering functionality: without a personal phone and address, food cannot be delivered.</p>
+</li>
+<li>
+<p>Highlights: This feature involved touching all components of the application and was a good first feature to work on.</p>
+</li>
+<li>
+<p>Cheryl Toh extended this significantly for her major enhancement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Other contributions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project Management</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Processed and assigned bugs after testing session for v1.4</p>
+</li>
+<li>
+<p>Managed release v1.2 and v1.4 on GitHub (2 releases)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up code collation</p>
+</li>
+<li>
+<p>Renamed <code>.jar</code> file</p>
+</li>
+<li>
+<p>Set up automated documentation publishing on GitHub</p>
+</li>
+<li>
+<p>Set up Travis CI</p>
+</li>
+<li>
+<p>Set up GitHub organisation, repository, invited team members and created Developer team</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>]</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="adding-a-food-interactively-code-add-code-proposed-to-finish-in-v1-5"><a class="link" href="#adding-a-food-interactively-code-add-code-proposed-to-finish-in-v1-5">Adding a food interactively: <code>add</code> [Proposed to finish in v1.5]</a></h3>
+<div class="paragraph">
+<p>Adds a food to HackEat using an interactive, chat-like experience where HackEat asks you questions about your food
+so you never have to remember the format for <code>add</code> again!<br>
+Format: <code>add</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All fields are required in the interactive <code>add</code> command.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A food should have 1 or more tags and allergies. Currently 0 tags and allergies is not supported for interactive mode.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add</code> [Press Enter] &gt; <code>What&#8217;s the name of your food?</code></p>
+</li>
+<li>
+<p><code>Sweet Chili Fish Burger</code> [Press Enter] &gt; <code>And phone number of restaurant?</code></p>
+</li>
+<li>
+<p><code>123133123</code> [Press Enter] &gt; <code>Is there an email?</code></p>
+</li>
+<li>
+<p><code>email@email.com</code> [Press Enter] &gt; <code>Where it @ fam?</code></p>
+</li>
+<li>
+<p><code>2 Clementi Road</code> [Press Enter] &gt; <code>Any tags?</code></p>
+</li>
+<li>
+<p><code>burger</code> [Press Enter] &gt; <code>Anything else? Type (n/N) to stop.</code></p>
+</li>
+<li>
+<p><code>n</code> [Press Enter] &gt; <code>Any allergies?</code></p>
+</li>
+<li>
+<p><code>peanut</code> [Press Enter] &gt; <code>Anything else? Type (n/N) to stop.</code></p>
+</li>
+<li>
+<p><code>n</code> [Press Enter] &gt; <code>Success!</code>
+=== Setting user profile: <code>userconfig</code>
+Sets user details to personalise the HackEat application so that food
+can be delivered to the correct address and deliverers can contact the user via his/her phone number.
+Users can also specify their allergies so that certain foods can removed from HackEat&#8217;s smart food
+recommendations.
+Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>userconfig n/Herbert Williams p/02142433532 a/12 Maccas Drive Singapore 4210 alg/lactose alg/gluten</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sets user profile of Herbert Williams.
+=== Natural Language Chatbot <code>[coming in v2.0]</code></p>
+</div>
+<div class="paragraph">
+<p>You can chat with HackEat without using strictly-formatted commands. Just like chatting with a human :)
+Our smart AI algorithm will understand what you mean, and what you want to eat (really!).</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Yo HackEat, add McDonald&#8217;s McSpicy</code> &gt; HackEat looks up the nearest McDonald&#8217;s to your current location and fills in all the other details.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="interactive-code-add-code-feature"><a class="link" href="#interactive-code-add-code-feature">Interactive <code>add</code> feature</a></h3>
+<div class="sect3">
+<h4 id="what"><a class="link" href="#what">What</a></h4>
+<div class="paragraph">
+<p>Users can type in <code>add</code>, and then the system will take the user through a set of prompts to get the information. This
+is a more natural way of using the CLI to get food.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why"><a class="link" href="#why">Why</a></h4>
+<div class="paragraph">
+<p>Our goal is to reduce the amount of thinking that programmers have to do to get the food that they want. Memorising and
+typing out the entire <code>add</code> command requires extra cognitive effort.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how"><a class="link" href="#how">How</a></h4>
+<div class="paragraph">
+<p>It was quickly realised that extra application state was necessary for managing interactive flows between a user and the
+system. This extra state includes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Knowing if a user is actively engaged in an interaction, so that new inputs are interpreted in the context of this
+existing interaction</p>
+</li>
+<li>
+<p>Knowing how far a user has progressed in the active interaction</p>
+</li>
+<li>
+<p>Intermediate application data that has not yet been committed to storage (e.g. the first attribute <code>Name</code> needs to
+be stored in memory until the last attribute is read from the user, at which point the whole <code>Food</code> with all its
+attributes can be saved in the <code>Storage</code> component)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="paragraph">
+<p>The state and logic that handle the above requirements are implemented in the abstract <code>Session</code> class as well as its
+concrete, command-specific child classes (e.g. <code>SessionAddCommand</code>).</p>
+</div>
+<div class="sect4">
+<h5 id="simplified-sequence-diagram-for-starting-or-continuing-a-code-session-code"><a class="link" href="#simplified-sequence-diagram-for-starting-or-continuing-a-code-session-code">Simplified sequence diagram for starting or continuing a <code>Session</code></a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/add-command-interactive-start.png" alt="add command interactive start" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>The abstract <code>Session</code> class provides the shared methods that control the logical flow of any interaction.
+The abstract methods <code>Session#parseInputForMultivaluedField</code> and <code>Session#parseInputForField</code> are overidden
+by concrete subclasses of <code>Session</code> because each type of <code>Command</code> needs to parse and store its</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="paragraph">
+<p>It was difficult to choose where to place the <code>Session</code>, <code>SessionAddCommand</code>, <code>SessionManager</code> and <code>SessionInterface</code>
+interface and classes. These classes and interface handle both application data (i.e. they should belong in the <code>Model</code>)
+as well as text parsing (i.e. they could also belong in the <code>Logic</code> component). We opted for the simplistic solution of
+placing it all in the <code>Model</code> component, with some coupling with the <code>Command</code> class which belongs to the <code>Logic</code>
+component.</p>
+</div>
+<div class="paragraph">
+<p>An alternative architectural design would be to have <code>SessionData</code> and <code>SessionLogic</code> separated across <code>Model</code> and
+<code>Logic</code> components. The advantage of this design is that it adheres to the strict definitions of the functions
+of each of these components. The disadvantage, which is much more costly, is the increased coupling between these
+separate components and classes. It is much more convenient to simply combine the state and logic for `Session`s in a
+single component to reduce coupling and increase cohesion, making developer efficiency higher and code organisation more
+simple.
+=== Configuring the User Profile
+==== Motivation
+It&#8217;s nice to have someone greet you as your friend. HackEat makes its users comfortable and feel
+welcomed whenever they open their app. This is possible because a new feature has been implemented that
+takes in the user&#8217;s name and other information. The user is then greeted upon opening the app.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-to-commands"><a class="link" href="#changes-to-commands">Changes to Commands</a></h4>
+<div class="paragraph">
+<p>A new Command class <code>UserConfigCommand</code> is created which allows the user to type in <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code> to update
+their profile.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-to-the-model"><a class="link" href="#changes-to-the-model">Changes to the Model</a></h4>
+<div class="paragraph">
+<p>In order to support the user profile, a new package was created under the <code>Model</code> component, specifically a <code>user</code> package.
+Inside it contains a <code>UserProfile</code> class, which holds the app state of the user&#8217;s profile. <code>Allergy</code> is also a new object
+in HackEat, and so an <code>Allergy</code> class was created in a new <code>allergy</code> package of the <code>Model</code> component. In order to support
+multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/model-component-with-user-profile.png" alt="model component with user profile" width="600">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="saving-to-storage"><a class="link" href="#saving-to-storage">Saving to Storage</a></h4>
+<div class="paragraph">
+<p>Executing the <code>UserConfigCommand</code> triggers the <code>model#updateUserProfile</code> method, which then posts an event to the <code>EventCenter</code>
+indicating that <code>HackEat</code> data has changed. The model data is then saved to XML format for persistent data.</p>
+</div>
+<div class="paragraph">
+<p>New classes required to support XML of User Profile:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>XMLAdaptedUserProfile</code></p>
+</li>
+<li>
+<p><code>XMLAdaptedAllergy</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="loading-from-storage"><a class="link" href="#loading-from-storage">Loading from storage</a></h4>
+<div class="paragraph">
+<p>This was quite simple. Only one new method was required to be added to the <code>AddressBook</code> class to initialize
+an <code>AddressBook</code> with the loaded <code>UserProfile</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="code-update-code-instead-of-code-add-code"><a class="link" href="#code-update-code-instead-of-code-add-code"><code>Update</code> instead of <code>Add</code></a></h5>
+<div class="paragraph">
+<p>It was simpler to implement a single <code>AddressBook#updateUserProfile</code> method instead of
+an <code>AddressBook#addUserProfile</code> and an update method. The update method simply sets the current <code>profile</code>
+property in <code>AddressBook</code> to the new incoming <code>profile</code>.</p>
+</div>
+<div class="paragraph">
+<p>By simply replacing the property, you don&#8217;t need to check if the property is not null before
+updating the profile. You also don&#8217;t need to check if the profile is null before choosing to add a new
+profile to the application. Separating add and update functionalities works for Food, but not for profile as the
+additional complexity is unnecessary.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-10 15:49:39 UTC
+</div>
+</div>
+</body>
+</html>
