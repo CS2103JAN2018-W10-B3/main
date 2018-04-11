@@ -71,6 +71,18 @@
 <p>Added Order Command</p>
 </li>
 <li>
+<p>Added Order Manager which emails restaurant provider of food</p>
+</li>
+<li>
+<p>Implemented a Food selection algorithm</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="unused-was-used-for-voice-messaging"><a class="link" href="#unused-was-used-for-voice-messaging">Unused (was used for voice messaging)</a></h3>
+<div class="ulist">
+<ul>
+<li>
 <p>Implemented server-side REST API for ordering</p>
 <div class="ulist">
 <ul>
@@ -83,10 +95,8 @@
 </ul>
 </div>
 </li>
-<li>
-<p>Implemented a Food selection algorithm</p>
-</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -97,10 +107,10 @@
 <h3 id="order-food-code-order-code-proposed-to-finish-in-v1-5"><a class="link" href="#order-food-code-order-code-proposed-to-finish-in-v1-5">Order food: <code>order</code> [Proposed to finish in v1.5]</a></h3>
 <div class="paragraph">
 <p>Orders food given with or without an index. If no index is given, a food will be chosen for you. May take some time as
-phone call is in progress. Otherwise, will order the food at the specified index.</p>
+email is sent. Otherwise, will order the food at the specified index.</p>
 </div>
 <div class="paragraph">
-<p>Currently, makes a phone call to the specified phone number (must be a singaporean number) associated with the food.</p>
+<p>Currently, emails the restaurant of the associated food for a request.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>order [INDEX]</code> or <code>order</code></p>
@@ -208,34 +218,23 @@ other end and order a food with a pre-canned message. Shown below:</p>
 </div>
 <div class="sect4">
 <h5 id="order-manager"><a class="link" href="#order-manager">Order Manager</a></h5>
-<div class="imageblock">
-<div class="content">
-<img src="../images/order-command--order-manager.png" alt="order command  order manager" width="600">
-</div>
-</div>
-<div class="paragraph">
-<p>Architecture to allow dynamic voice calls to restaurants based on user profile and food.</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Client first sends XML data to REST API path /create/</p>
+<p>Sets up a session and generates access to email server</p>
 </li>
 <li>
-<p>REST API parses the data, and generates a handler at a mirror address eg. /order/</p>
+<p>Emails restaurant the order details</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In future, this will also contact a server which uses text to voice to translates the email into voice a message.</p>
 </li>
 <li>
-<p>Once a response is received from server, the client then creates a call using the Twilio API, specifying the path of
-XML data to fetch, under /order/:id</p>
+<p>v1.4 has implemented this via Twilio, but was changed due to current rejection of the use of the library</p>
 </li>
-<li>
-<p>This will prompt Twilio to call the specified phone from the client, using the API keys etc.</p>
-</li>
-<li>
-<p>Twilio API will visit the URL specified and fetch the XML data and parse into computer generated voice via TwiML API.</p>
-</li>
-<li>
-<p>Restaurant will pick up and receive message of the order, prepare food, and send to address.</p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -246,11 +245,14 @@ XML data to fetch, under /order/:id</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Voice call for ordering food was chosen as it is Universal to all restaurants that deliver food. Some restaurants do
-no have Uber Eats or Food Panda service.</p>
+<p>Email was used to avoid importing a large library and can be used in conjunction to Email to Voice message services.</p>
 </li>
 <li>
-<p>A REST API was chosen as the server to relay XML data instead of allowing a tunnel to localhost as it is more secure.</p>
+<p>In future, voice call for ordering food will be chosen as it is Universal to all restaurants that deliver food.
+Some restaurants do nto have Uber Eats or Food Panda service.</p>
+</li>
+<li>
+<p>A REST API was chosen as the server to relay XML data.</p>
 </li>
 </ul>
 </div>
@@ -268,6 +270,10 @@ added such as: delivery time tracking, more restaurants. This would guarantee th
 <div class="sect1">
 <h2 id="future-proposals"><a class="link" href="#future-proposals">Future proposals</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The use of Twilio API to directly use voice messages.
+Can be seen in unused section.</p>
+</div>
 <div class="sect2">
 <h3 id="smarter-ordering-ai-agent"><a class="link" href="#smarter-ordering-ai-agent">Smarter ordering AI agent</a></h3>
 <div class="paragraph">
@@ -319,7 +325,7 @@ added such as: delivery time tracking, more restaurants. This would guarantee th
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 17:34:07 UTC
+Last updated 2018-04-11 01:07:38 UTC
 </div>
 </div>
 </body>
