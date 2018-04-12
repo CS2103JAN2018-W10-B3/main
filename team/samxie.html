@@ -59,22 +59,22 @@
 <p>Revamped test cases to be Food instead of Persons</p>
 </li>
 <li>
+<p>Added Rating field to Food</p>
+</li>
+<li>
 <p>Display price and ratings in UI</p>
 </li>
 <li>
 <p>Changed Logo</p>
 </li>
 <li>
-<p>Added Ratings field</p>
+<p>Added <code>order</code> Command</p>
 </li>
 <li>
-<p>Added Order Command</p>
+<p>Added Food Selector which selects food based on Food&#8217;s ratings and price</p>
 </li>
 <li>
-<p>Added Order Manager which emails restaurant provider of food</p>
-</li>
-<li>
-<p>Implemented a Food selection algorithm</p>
+<p>Added Order Manager which phones an order and emails restaurant provider of food</p>
 </li>
 </ul>
 </div>
@@ -86,7 +86,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>order</code> command which implements Twilio and TwiML to call restraunts</p>
+<p><code>order</code> command which implements a voice calling API to call restraunts</p>
 <div class="ulist">
 <ul>
 <li>
@@ -132,32 +132,37 @@
 <div class="ulist">
 <ul>
 <li>
-<p>If no index is given, a food will be chosen for you.
-The food chosen is determined to be both desireable yet, not too determanistic that it will always be orderd.</p>
-</li>
-<li>
 <p>If index is given, will order the food at the specified index.</p>
 </li>
 <li>
-<p>This command will not order foods which you have allergies for (magenta tags).</p>
+<p>If no index is given, a food will be chosen for you.
+The food chosen is determined to be both desirable yet, not too deterministic that it will always be ordered.</p>
 </li>
 <li>
-<p>Ordering may take some time as email is sent.</p>
+<p>This command will not order foods which you have allergies for.</p>
+</li>
+<li>
+<p>Ordering may take some time as email and phone call is prepared.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Food is ordered by:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Emailing the restaurant of the associated food for a request.</p>
+</li>
+<li>
+<p>Sending a request to our server which initiates a phone call to food&#8217;s phone number of the same message.</p>
 <div class="literalblock">
 <div class="content">
-<pre>Emailing the restaurant of the associated food for a request.</pre>
+<pre>Make sure that the food's contact details are correct, specifically, the phone is a Singaporean number.</pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>Sending a request to a black-box server which initiates a phone call to food's phone number of the same message.</pre>
-</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Format: <code>order [INDEX]</code> or <code>order</code></p>
@@ -168,10 +173,10 @@ The food chosen is determined to be both desireable yet, not too determanistic t
 <div class="ulist">
 <ul>
 <li>
-<p><code>order 2</code> orders the second listed food</p>
+<p><code>order 2</code> orders the second food listed</p>
 </li>
 <li>
-<p><code>order</code> orders a heuristically selected food from listed food</p>
+<p><code>order</code> selects a food from the list to be ordered for you</p>
 </li>
 </ul>
 </div>
@@ -222,10 +227,10 @@ allergies.</p>
 <p>Foods will be ordered randomly with a preference for cheaper and higher rated foods.</p>
 </li>
 <li>
-<p>The program will email the restaurant with a confirmation</p>
+<p>The program will email the restaurant with a request for food.</p>
 </li>
 <li>
-<p>Furthermore, a phone call will be held if applicable</p>
+<p>Furthermore, a phone call will be held to request food (only if server is up).</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -233,10 +238,10 @@ allergies.</p>
 Code can be found here: <a href="https://github.com/CS2103JAN2018-W10-B3/hackeat-server" class="bare">https://github.com/CS2103JAN2018-W10-B3/hackeat-server</a></p>
 </li>
 <li>
-<p>The server will initiate a phone call via Twillio (or an equivalent service) to the chosen food&#8217;s phone number.</p>
+<p>The server will initiate a phone call using a calling service to the chosen food&#8217;s phone number.</p>
 </li>
 <li>
-<p>TwiML (or equivalent service) will be used to translate text to voice to communicate with the restaurant on the
+<p>A text to voice service will be used to translate text to voice to communicate with the restaurant on the
 other end and order a food with a pre-canned message. Shown below:</p>
 </li>
 </ol>
@@ -392,7 +397,7 @@ Can be seen in unused section.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-12 13:44:28 UTC
+Last updated 2018-04-12 14:14:09 UTC
 </div>
 </div>
 </body>

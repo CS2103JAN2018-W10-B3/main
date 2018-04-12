@@ -632,32 +632,37 @@ Format: <code>clear</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>If no index is given, a food will be chosen for you.
-The food chosen is determined to be both desireable yet, not too determanistic that it will always be orderd.</p>
-</li>
-<li>
 <p>If index is given, will order the food at the specified index.</p>
 </li>
 <li>
-<p>This command will not order foods which you have allergies for (magenta tags).</p>
+<p>If no index is given, a food will be chosen for you.
+The food chosen is determined to be both desirable yet, not too deterministic that it will always be ordered.</p>
 </li>
 <li>
-<p>Ordering may take some time as email is sent.</p>
+<p>This command will not order foods which you have allergies for.</p>
+</li>
+<li>
+<p>Ordering may take some time as email and phone call is prepared.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p>Food is ordered by:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Emailing the restaurant of the associated food for a request.</p>
+</li>
+<li>
+<p>Sending a request to our server which initiates a phone call to food&#8217;s phone number of the same message.</p>
 <div class="literalblock">
 <div class="content">
-<pre>Emailing the restaurant of the associated food for a request.</pre>
+<pre>Make sure that the food's contact details are correct, specifically, the phone is a Singaporean number.</pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>Sending a request to a black-box server which initiates a phone call to food's phone number of the same message.</pre>
-</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Format: <code>order [INDEX]</code> or <code>order</code></p>
@@ -668,10 +673,10 @@ The food chosen is determined to be both desireable yet, not too determanistic t
 <div class="ulist">
 <ul>
 <li>
-<p><code>order 2</code> orders the second listed food</p>
+<p><code>order 2</code> orders the second food listed</p>
 </li>
 <li>
-<p><code>order</code> orders a heuristically selected food from listed food</p>
+<p><code>order</code> selects a food from the list to be ordered for you</p>
 </li>
 </ul>
 </div>
@@ -774,7 +779,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-12 13:44:28 UTC
+Last updated 2018-04-12 14:14:09 UTC
 </div>
 </div>
 </body>
