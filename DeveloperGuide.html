@@ -100,6 +100,8 @@
 <li><a href="#deleting-a-food">H.2. Deleting a food</a></li>
 <li><a href="#saving-data">H.3. Saving data</a></li>
 <li><a href="#ordering-a-food">H.4. Ordering a food</a></li>
+<li><a href="#editing-a-user-profile">H.5. Editing a user profile</a></li>
+<li><a href="#changing-of-profile-picture-2">H.6. Changing of profile picture</a></li>
 </ul>
 </li>
 </ul>
@@ -3141,12 +3143,61 @@ then verify the message is correct.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="editing-a-user-profile"><a class="link" href="#editing-a-user-profile">H.5. Editing a user profile</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Updating the details of a user profile</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: A user profile should have been set up by default.</p>
+</li>
+<li>
+<p>Test case: <code>edituser n/Wei Wei</code><br>
+Expected: Only if your current profile name is not Wei Wei.<br>
+Name of user profile will be updated to <code>Wei Wei</code>.</p>
+</li>
+<li>
+<p>Test case: <code>edituser alg/peanuts alg/chicken</code><br>
+Expected: Only if your current allergies are not peanuts and chicken.<br>
+Allergies of the user will be updated to include <em>only</em> the two provided allergies.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-of-profile-picture-2"><a class="link" href="#changing-of-profile-picture-2">H.6. Changing of profile picture</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Updating a profile picture</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: A default profile picture should have been set up.</p>
+</li>
+<li>
+<p>Test case: <code>changepic</code>
+Expected: A file browser will pop up. Select a <em>square</em> image. The user profile picture<br>
+should be updated.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 09:21:50 UTC
+Last updated 2018-04-14 09:29:40 UTC
 </div>
 </div>
 </body>
