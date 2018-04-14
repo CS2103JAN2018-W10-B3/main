@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>AddressBook Level 4 - Developer Guide</title>
+<title>HackEat - Developer Guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>AddressBook Level 4 - Developer Guide</h1>
+<h1>HackEat - Developer Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -45,11 +45,11 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#v2-0-add-shortcuts">3.2. [V2.0] Add Shortcuts</a></li>
-<li><a href="#configuring-the-user-profile">3.3. Configuring the User Profile</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#configuring-the-user-profile">3.2. Configuring the User Profile</a></li>
+<li><a href="#logging">3.3. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.4. Configuration</a></li>
+<li><a href="#changing-of-profile-picture">3.5. Changing of Profile Picture</a></li>
+<li><a href="#editing-of-profile-details">3.6. Editing of profile details</a></li>
 <li><a href="#code-order-code-command-feature">3.7. <code>order</code> command feature</a></li>
 <li><a href="#interactive-code-add-code-feature">3.8. Interactive <code>add</code> feature</a></li>
 </ul>
@@ -878,63 +878,9 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="v2-0-add-shortcuts"><a class="link" href="#v2-0-add-shortcuts">3.2. [V2.0] Add Shortcuts</a></h3>
+<h3 id="configuring-the-user-profile"><a class="link" href="#configuring-the-user-profile">3.2. Configuring the User Profile</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>A new Command class <code>AddShortcutCommand</code> will be created. A <code>Shortcut</code> class will be added to Model. An ArrayList of Commands that is linked to a particular shortcut will be saved. Every <code>Person</code> object will have a HashMap which stores the different Shortcuts they have created.</p>
-</div>
-<div class="paragraph">
-<p>Suppose that a user has just launched the application. The user decides to create a new shortcut for ordering his favorite food. He will type in <code>mksc orderfave</code> and he will then be prompted to type in the commands that he would like to associate with that particular shortcut, for e.g. <code>find butter, order 1</code>.
-The sequence of commands he has typed in will be stored in a <code>List</code>. The <code>List</code>, together with the name of the shortcut will then be stored in a <code>HashMap</code> as part of the attributes of the <code>Person</code> class.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UpdatedLogicCommandClassDiagram.png" alt="UpdatedLogicCommandClassDiagram" width="800">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-whether-to-make-addshortcut-undoable"><a class="link" href="#aspect-whether-to-make-addshortcut-undoable">Aspect: Whether to make AddShortcut undoable</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1:</strong> Make it undoable</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Provides user with greater flexibility</p>
-</li>
-<li>
-<p>Cons: Harder to implement</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Do not make it undoable</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easier to implement</p>
-</li>
-<li>
-<p>Cons: Less user friendly</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="configuring-the-user-profile"><a class="link" href="#configuring-the-user-profile">3.3. Configuring the User Profile</a></h3>
-<div class="sect3">
-<h4 id="motivation"><a class="link" href="#motivation">3.3.1. Motivation</a></h4>
+<h4 id="motivation"><a class="link" href="#motivation">3.2.1. Motivation</a></h4>
 <div class="paragraph">
 <p>It&#8217;s nice to have someone greet you as your friend. HackEat makes its users comfortable and feel
 welcomed whenever they open their app. This is possible because a new feature has been implemented that
@@ -942,24 +888,28 @@ takes in the user&#8217;s name and other information. The user is then greeted u
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-to-commands"><a class="link" href="#changes-to-commands">3.3.2. Changes to Commands</a></h4>
+<h4 id="changes-to-commands"><a class="link" href="#changes-to-commands">3.2.2. Changes to Commands</a></h4>
 <div class="paragraph">
 <p>A new Command class <code>UserConfigCommand</code> is created which allows the user to type in <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code> to update
 their profile.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-to-the-model"><a class="link" href="#changes-to-the-model">3.3.3. Changes to the Model</a></h4>
+<h4 id="changes-to-the-model"><a class="link" href="#changes-to-the-model">3.2.3. Changes to the Model</a></h4>
 <div class="paragraph">
 <p>In order to support the user profile, a new package was created under the <code>Model</code> component, specifically a <code>user</code> package.
 Inside it contains a <code>UserProfile</code> class, which holds the app state of the user&#8217;s profile. <code>Allergy</code> is also a new object
 in HackEat, and so an <code>Allergy</code> class was created in a new <code>allergy</code> package of the <code>Model</code> component. In order to support
-multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.
-image::model-component-with-user-profile.png[width="600"]</p>
+multiple allergies for a single user, a <code>UniqueAllergyList</code> was also created under the same package.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/model-component-with-user-profile.png" alt="model component with user profile" width="600">
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="saving-to-storage"><a class="link" href="#saving-to-storage">3.3.4. Saving to Storage</a></h4>
+<h4 id="saving-to-storage"><a class="link" href="#saving-to-storage">3.2.4. Saving to Storage</a></h4>
 <div class="paragraph">
 <p>Executing the <code>UserConfigCommand</code> triggers the <code>model#updateUserProfile</code> method, which then posts an event to the <code>EventCenter</code>
 indicating that <code>HackEat</code> data has changed. The model data is then saved to XML format for persistent data.</p>
@@ -979,14 +929,14 @@ indicating that <code>HackEat</code> data has changed. The model data is then sa
 </div>
 </div>
 <div class="sect3">
-<h4 id="loading-from-storage"><a class="link" href="#loading-from-storage">3.3.5. Loading from storage</a></h4>
+<h4 id="loading-from-storage"><a class="link" href="#loading-from-storage">3.2.5. Loading from storage</a></h4>
 <div class="paragraph">
 <p>This was quite simple. Only one new method was required to be added to the <code>AddressBook</code> class to initialize
 an <code>AddressBook</code> with the loaded <code>UserProfile</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.6. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.6. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="code-update-code-instead-of-code-add-code"><a class="link" href="#code-update-code-instead-of-code-add-code"><code>Update</code> instead of <code>Add</code></a></h5>
 <div class="paragraph">
@@ -1004,20 +954,14 @@ additional complexity is unnecessary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.3. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.4, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1048,9 +992,170 @@ additional complexity is unnecessary.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.4. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-of-profile-picture"><a class="link" href="#changing-of-profile-picture">3.5. Changing of Profile Picture</a></h3>
+<div class="sect3">
+<h4 id="motivation-2"><a class="link" href="#motivation-2">3.5.1. Motivation</a></h4>
+<div class="paragraph">
+<p>Allowing a user to change his/her profile picture is the first step to making his/her experience
+with HackEat a personalized one.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.5.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>A default profile picture is downloaded from the Internet when HackEat is first started and this is
+stored in the same directory as the jar file.
+When the command is called, the user selects an appropriate image.
+The image overwrites the existing profile picture.
+An event is then raised and this causes the image displayed to change.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-saving-the-picture"><a class="link" href="#aspect-saving-the-picture">Aspect: Saving the picture</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Saving it in HackEat as a Base64 encoded String</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It was more intuitive to store the picture together with the user profile in HackEat.</p>
+</li>
+<li>
+<p>Cons: Because of the length of the Base64 encoded string, it makes the xml file
+very clunky.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (Current choice):</strong> Save it as an image file in the same directory as the jar file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More direct and easier to implement.</p>
+</li>
+<li>
+<p>Cons: Restricts this application to a single user.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Save the file path in the user profile</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It was more intuitive to store the file path in the user profile.</p>
+</li>
+<li>
+<p>Cons: More tedious than Alternative 2 as a new field would have to be added to the user profile.
+Since our app is targeted only at a user i.e. the person who installs and sets up HackEat on his computer,
+ such an implementation was unnecessary and Alternative 2 was chosen instead.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-of-profile-details"><a class="link" href="#editing-of-profile-details">3.6. Editing of profile details</a></h3>
+<div class="sect3">
+<h4 id="motivation-3"><a class="link" href="#motivation-3">3.6.1. Motivation</a></h4>
+<div class="paragraph">
+<p>Allows a user to update their details easily without having to provide all the compulsory details again.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">3.6.2. Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/EditUserSequenceDiagramLogic.png" alt="EditUserSequenceDiagramLogic" width="600">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upon parsing of an <code>EditUserCommand</code>, an <code>EditUserDescriptor</code> object is created.</p>
+</li>
+<li>
+<p>The attribute values of this object will then be set to the edited values.</p>
+</li>
+<li>
+<p>The <code>EditUserDescriptor</code> object will be passed as an argument to the constructor of the <code>EditUserCommand</code>.</p>
+</li>
+<li>
+<p>The <code>EditUserCommand</code> is then preprocessed.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The existing user profile is retrieved.</p>
+</li>
+<li>
+<p>Based on the attributes which have been set in the <code>EditUserDescriptor</code> object, a new <code>UserProfile</code>
+object with the updated attribute values is created.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The new <code>UserProfile</code> is then passed to <code>model</code>.</p>
+</li>
+<li>
+<p><code>model</code> then updates the user profile of HackEat.</p>
+</li>
+<li>
+<p>This causes an event to be raised which then causes HackEat to be saved to persistent storage.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.3. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-setting-a-user-s-details"><a class="link" href="#aspect-setting-a-user-s-details">Aspect: Setting a user&#8217;s details</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Modifying the user details directly from Logic</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It was more direct to change the details immediately from the Logic Component.</p>
+</li>
+<li>
+<p>Cons: It can result in increased coupling among the classes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (Current choice):</strong> Creation of a new EditUserDescriptor object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A cleaner implementation where there is less coupling.</p>
+</li>
+<li>
+<p>Cons: On first sight, it seemed more tedious to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1180,7 +1285,7 @@ other end and order a food with a pre-canned message. Shown below:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.7.5. Design considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.7.5. Design considerations</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1244,7 +1349,7 @@ attributes can be saved in the <code>Storage</code> component)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.8.4. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.8.4. Current implementation</a></h4>
 <div class="paragraph">
 <p>The state and logic that handle the above requirements are implemented in the abstract <code>Session</code> class as well as its
 concrete, command-specific child classes (e.g. <code>SessionAddCommand</code>).</p>
@@ -1264,7 +1369,7 @@ by concrete subclasses of <code>Session</code> because each type of <code>Comman
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.5. Design considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">3.8.5. Design considerations</a></h4>
 <div class="paragraph">
 <p>It was difficult to choose where to place the <code>Session</code>, <code>SessionAddCommand</code>, <code>SessionManager</code> and <code>SessionInterface</code>
 interface and classes. These classes and interface handle both application data (i.e. they should belong in the <code>Model</code>)
@@ -3041,7 +3146,7 @@ then verify the message is correct.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 03:29:21 UTC
+Last updated 2018-04-14 02:22:16 UTC
 </div>
 </div>
 </body>

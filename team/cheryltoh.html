@@ -96,16 +96,22 @@ app. Having a profile picture is the first step to achieving this.</p>
 </ul>
 </div>
 </li>
+<li>
+<p>Tools:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up Coveralls
+== Contributions to the User Guide</p>
+</li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -179,50 +185,68 @@ Edits the phone number and address of the user to be <code>61234567</code> and <
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="v2-0-add-shortcuts"><a class="link" href="#v2-0-add-shortcuts">[V2.0] Add Shortcuts</a></h3>
+<h3 id="changing-of-profile-picture"><a class="link" href="#changing-of-profile-picture">Changing of Profile Picture</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
+<h4 id="motivation"><a class="link" href="#motivation">Motivation</a></h4>
 <div class="paragraph">
-<p>A new Command class <code>AddShortcutCommand</code> will be created. A <code>Shortcut</code> class will be added to Model. An ArrayList of Commands that is linked to a particular shortcut will be saved. Every <code>Person</code> object will have a HashMap which stores the different Shortcuts they have created.</p>
+<p>Allowing a user to change his/her profile picture is the first step to making his/her experience
+with HackEat a personalized one.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>Suppose that a user has just launched the application. The user decides to create a new shortcut for ordering his favorite food. He will type in <code>mksc orderfave</code> and he will then be prompted to type in the commands that he would like to associate with that particular shortcut, for e.g. <code>find butter, order 1</code>.
-The sequence of commands he has typed in will be stored in a <code>List</code>. The <code>List</code>, together with the name of the shortcut will then be stored in a <code>HashMap</code> as part of the attributes of the <code>Person</code> class.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UpdatedLogicCommandClassDiagram.png" alt="UpdatedLogicCommandClassDiagram" width="800">
-</div>
+<p>A default profile picture is downloaded from the Internet when HackEat is first started and this is
+stored in the same directory as the jar file.
+When the command is called, the user selects an appropriate image.
+The image overwrites the existing profile picture.
+An event is then raised and this causes the image displayed to change.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-whether-to-make-addshortcut-undoable"><a class="link" href="#aspect-whether-to-make-addshortcut-undoable">Aspect: Whether to make AddShortcut undoable</a></h5>
+<h5 id="aspect-saving-the-picture"><a class="link" href="#aspect-saving-the-picture">Aspect: Saving the picture</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1:</strong> Make it undoable</p>
+<p><strong>Alternative 1:</strong> Saving it in HackEat as a Base64 encoded String</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Provides user with greater flexibility</p>
+<p>Pros: It was more intuitive to store the picture together with the user profile in HackEat.</p>
 </li>
 <li>
-<p>Cons: Harder to implement</p>
+<p>Cons: Because of the length of the Base64 encoded string, it makes the xml file
+very clunky.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Do not make it undoable</p>
+<p><strong>Alternative 2 (Current choice):</strong> Save it as an image file in the same directory as the jar file.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement</p>
+<p>Pros: More direct and easier to implement.</p>
 </li>
 <li>
-<p>Cons: Less user friendly</p>
+<p>Cons: Restricts this application to a single user.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Save the file path in the user profile</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It was more intuitive to store the file path in the user profile.</p>
+</li>
+<li>
+<p>Cons: More tedious than Alternative 2 as a new field would have to be added to the user profile.
+Since our app is targeted only at a user i.e. the person who installs and sets up HackEat on his computer,
+ such an implementation was unnecessary and Alternative 2 was chosen instead.</p>
 </li>
 </ul>
 </div>
@@ -233,9 +257,92 @@ The sequence of commands he has typed in will be stored in a <code>List</code>. 
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
+<h3 id="editing-of-profile-details"><a class="link" href="#editing-of-profile-details">Editing of profile details</a></h3>
+<div class="sect3">
+<h4 id="motivation-2"><a class="link" href="#motivation-2">Motivation</a></h4>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>Allows a user to update their details easily without having to provide all the compulsory details again.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditUserSequenceDiagramLogic.png" alt="EditUserSequenceDiagramLogic" width="600">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Upon parsing of an <code>EditUserCommand</code>, an <code>EditUserDescriptor</code> object is created.</p>
+</li>
+<li>
+<p>The attribute values of this object will then be set to the edited values.</p>
+</li>
+<li>
+<p>The <code>EditUserDescriptor</code> object will be passed as an argument to the constructor of the <code>EditUserCommand</code>.</p>
+</li>
+<li>
+<p>The <code>EditUserCommand</code> is then preprocessed.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The existing user profile is retrieved.</p>
+</li>
+<li>
+<p>Based on the attributes which have been set in the <code>EditUserDescriptor</code> object, a new <code>UserProfile</code>
+object with the updated attribute values is created.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The new <code>UserProfile</code> is then passed to <code>model</code>.</p>
+</li>
+<li>
+<p><code>model</code> then updates the user profile of HackEat.</p>
+</li>
+<li>
+<p>This causes an event to be raised which then causes HackEat to be saved to persistent storage.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-setting-a-user-s-details"><a class="link" href="#aspect-setting-a-user-s-details">Aspect: Setting a user&#8217;s details</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Modifying the user details directly from Logic</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It was more direct to change the details immediately from the Logic Component.</p>
+</li>
+<li>
+<p>Cons: It can result in increased coupling among the classes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (Current choice):</strong> Creation of a new EditUserDescriptor object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A cleaner implementation where there is less coupling.</p>
+</li>
+<li>
+<p>Cons: On first sight, it seemed more tedious to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -243,7 +350,7 @@ The sequence of commands he has typed in will be stored in a <code>List</code>. 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-13 03:29:21 UTC
+Last updated 2018-04-14 02:22:16 UTC
 </div>
 </div>
 </body>
