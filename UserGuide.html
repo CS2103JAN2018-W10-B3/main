@@ -30,7 +30,7 @@
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
 <li><a href="#adding-a-food-in-a-single-line-code-add-code">3.2. Adding a food in a single line: <code>add</code></a></li>
-<li><a href="#adding-a-food-interactively-code-add-code-proposed-to-finish-in-v1-5">3.3. Adding a food interactively: <code>add</code> [Proposed to finish in v1.5]</a></li>
+<li><a href="#adding-a-food-interactively-code-add-code">3.3. Adding a food interactively: <code>add</code></a></li>
 <li><a href="#listing-all-foods-code-list-code">3.4. Listing all foods : <code>list</code></a></li>
 <li><a href="#editing-a-food-code-edit-code">3.5. Editing a food : <code>edit</code></a></li>
 <li><a href="#locating-foods-by-name-code-find-code">3.6. Locating foods by name: <code>find</code></a></li>
@@ -204,35 +204,11 @@ A food can have any number of tags and allergies (including 0)
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-food-interactively-code-add-code-proposed-to-finish-in-v1-5"><a class="link" href="#adding-a-food-interactively-code-add-code-proposed-to-finish-in-v1-5">3.3. Adding a food interactively: <code>add</code> [Proposed to finish in v1.5]</a></h3>
+<h3 id="adding-a-food-interactively-code-add-code"><a class="link" href="#adding-a-food-interactively-code-add-code">3.3. Adding a food interactively: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a food to HackEat using an interactive, chat-like experience where HackEat asks you questions about your food
 so you never have to remember the format for <code>add</code> again!<br>
 Format: <code>add</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-All fields are required in the interactive <code>add</code> command.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A food should have 1 or more tags and allergies. Currently 0 tags and allergies is not supported for interactive mode.
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -240,31 +216,37 @@ A food should have 1 or more tags and allergies. Currently 0 tags and allergies 
 <div class="ulist">
 <ul>
 <li>
-<p><code>add</code> [Press Enter] &gt; <code>What&#8217;s the name of your food?</code></p>
+<p><code>add</code> [Press Enter] &gt; <code>What&#8217;s the food called?</code></p>
 </li>
 <li>
-<p><code>Sweet Chili Fish Burger</code> [Press Enter] &gt; <code>And phone number of restaurant?</code></p>
+<p><code>Sweet Chili Fish Burger</code> [Press Enter] &gt; <code>Restaurant phone number?</code></p>
 </li>
 <li>
-<p><code>123133123</code> [Press Enter] &gt; <code>Is there an email?</code></p>
+<p><code>123133123</code> [Press Enter] &gt; <code>And their email? [Enter] to skip.</code></p>
 </li>
 <li>
-<p><code>email@email.com</code> [Press Enter] &gt; <code>Where it @ fam?</code></p>
+<p><code>email@email.com</code> [Press Enter] &gt; <code>Where they located @ fam? [Enter] to skip.</code></p>
 </li>
 <li>
-<p><code>2 Clementi Road</code> [Press Enter] &gt; <code>Any tags?</code></p>
+<p><code>2 Clementi Road</code> [Press Enter] &gt; <code>$$$? [Enter] to skip.</code></p>
 </li>
 <li>
-<p><code>burger</code> [Press Enter] &gt; <code>Anything else? Type (n/N) to stop.</code></p>
+<p>[Press Enter] &gt; <code>U rate or what? [Enter] to skip.</code></p>
 </li>
 <li>
-<p><code>n</code> [Press Enter] &gt; <code>Any allergies?</code></p>
+<p><code>5</code> [Press Enter] &gt; <code>Where those tags at? [Enter] to skip.</code></p>
 </li>
 <li>
-<p><code>peanut</code> [Press Enter] &gt; <code>Anything else? Type (n/N) to stop.</code></p>
+<p><code>burger</code> [Press Enter] &gt; <code>Anything else? Type [Enter] to stop.</code></p>
 </li>
 <li>
-<p><code>n</code> [Press Enter] &gt; <code>Success!</code></p>
+<p>[Press Enter] &gt; <code>Does this food have any allergies? Type [Enter] to skip.</code></p>
+</li>
+<li>
+<p><code>peanut</code> [Press Enter] &gt; <code>Anything else? Type [Enter] to stop.</code></p>
+</li>
+<li>
+<p>[Press Enter] &gt; <code>Success!</code></p>
 </li>
 </ul>
 </div>
@@ -782,7 +764,7 @@ e.g. <code>edituser n/Lucas Ho alg/peanuts</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 15:53:33 UTC
+Last updated 2018-04-14 17:04:42 UTC
 </div>
 </div>
 </body>
