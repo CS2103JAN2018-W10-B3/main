@@ -52,6 +52,7 @@
 <li><a href="#editing-of-profile-details">3.6. Editing of profile details</a></li>
 <li><a href="#code-order-code-command-feature">3.7. <code>order</code> command feature</a></li>
 <li><a href="#interactive-code-add-code-feature">3.8. Interactive <code>add</code> feature</a></li>
+<li><a href="#chat-ui">3.9. Chat UI</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -97,11 +98,12 @@
 <li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-food">H.2. Deleting a food</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
-<li><a href="#ordering-a-food">H.4. Ordering a food</a></li>
-<li><a href="#editing-a-user-profile">H.5. Editing a user profile</a></li>
-<li><a href="#changing-of-profile-picture-2">H.6. Changing of profile picture</a></li>
+<li><a href="#adding-a-food-interactively">H.2. Adding a food interactively</a></li>
+<li><a href="#deleting-a-food">H.3. Deleting a food</a></li>
+<li><a href="#saving-data">H.4. Saving data</a></li>
+<li><a href="#ordering-a-food">H.5. Ordering a food</a></li>
+<li><a href="#editing-a-user-profile">H.6. Editing a user profile</a></li>
+<li><a href="#changing-of-profile-picture-2">H.7. Changing of profile picture</a></li>
 </ul>
 </li>
 </ul>
@@ -1382,10 +1384,34 @@ component.</p>
 <div class="paragraph">
 <p>An alternative architectural design would be to have <code>SessionData</code> and <code>SessionLogic</code> separated across <code>Model</code> and
 <code>Logic</code> components. The advantage of this design is that it adheres to the strict definitions of the functions
-of each of these components. The disadvantage, which is much more costly, is the increased coupling between these
-separate components and classes. It is much more convenient to simply combine the state and logic for `Session`s in a
-single component to reduce coupling and increase cohesion, making developer efficiency higher and code organisation more
+of each of these components. The disadvantage, which is much more costly, is the increased coupling between these separate components and classes. It is much more convenient to simply combine the state and logic for <code>Sessions</code> in a single component to reduce coupling and increase cohesion, making developer efficiency higher and code organisation more
 simple.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="chat-ui"><a class="link" href="#chat-ui">3.9. Chat UI</a></h3>
+<div class="sect3">
+<h4 id="what-3"><a class="link" href="#what-3">3.9.1. What</a></h4>
+<div class="paragraph">
+<p>The <code>ResultDisplay</code> was replaced with a <code>ChatPanel</code>. The system&#8217;s messages and the user&#8217;s messages are now shown
+as chat messages in a chat history. The message bubbles are color coordinated based on whether the message is
+a user message, a failed system message, or a successful system message.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-3"><a class="link" href="#why-3">3.9.2. Why</a></h4>
+<div class="paragraph">
+<p>The chat UI, like the interactive <code>add</code> command, aims to give our target users (hungry programmers) a fun and natural way to
+manage food and food ordering. The commands are still CLI-based, but now there is an added sense of interaction and novelty
+that delights our users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-3"><a class="link" href="#how-3">3.9.3. How</a></h4>
+<div class="paragraph">
+<p>The chat UI consists of the following set of nested JavaFX components, displayed in the object diagram below.
+image::object-diagram-chat-ui.png[width="600"]</p>
 </div>
 </div>
 </div>
@@ -3017,7 +3043,55 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-food"><a class="link" href="#deleting-a-food">H.2. Deleting a food</a></h3>
+<h3 id="adding-a-food-interactively"><a class="link" href="#adding-a-food-interactively">H.2. Adding a food interactively</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start the interactive command:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Type <code>add</code> followed by 0 or more whitespaces.</p>
+</li>
+<li>
+<p>Type <code>Chinese Hot Pot</code> for the food&#8217;s name.</p>
+</li>
+<li>
+<p>Type <code>abcadsajdl</code> for the phone number to get a failure message.</p>
+</li>
+<li>
+<p>Type <code>12319313123</code> for a correct phone number.</p>
+</li>
+<li>
+<p>Press Enter for the rest of the fields until the <code>Success</code> message is received.</p>
+</li>
+<li>
+<p>Check that the food was indeed added in the food panel on the left.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Responsive width of message</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Messages should be at most three-quarters of the width of the chat panel.</p>
+</li>
+<li>
+<p>Resize the window to see automatic resizing of the maximum width of the message bubbles.</p>
+</li>
+<li>
+<p>Type in a really long message (e.g., repeating the letter <code>a</code> 50 times) in response to any of the prompts. The text should wrap properly and not exceed three-quarters of the chat panel&#8217;s width.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-food"><a class="link" href="#deleting-a-food">H.3. Deleting a food</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3049,7 +3123,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">H.4. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3069,7 +3143,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ordering-a-food"><a class="link" href="#ordering-a-food">H.4. Ordering a food</a></h3>
+<h3 id="ordering-a-food"><a class="link" href="#ordering-a-food">H.5. Ordering a food</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3144,7 +3218,7 @@ then verify the message is correct.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-user-profile"><a class="link" href="#editing-a-user-profile">H.5. Editing a user profile</a></h3>
+<h3 id="editing-a-user-profile"><a class="link" href="#editing-a-user-profile">H.6. Editing a user profile</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3171,7 +3245,7 @@ Allergies of the user will be updated to include <em>only</em> the two provided 
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-of-profile-picture-2"><a class="link" href="#changing-of-profile-picture-2">H.6. Changing of profile picture</a></h3>
+<h3 id="changing-of-profile-picture-2"><a class="link" href="#changing-of-profile-picture-2">H.7. Changing of profile picture</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -3197,7 +3271,7 @@ should be updated.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 17:04:22 UTC
+Last updated 2018-04-14 17:06:22 UTC
 </div>
 </div>
 </body>
