@@ -125,7 +125,8 @@ app. Having a profile picture is the first step to achieving this.</p>
 <div class="sect2">
 <h3 id="editing-user-profile-code-edituser-code"><a class="link" href="#editing-user-profile-code-edituser-code">Editing user profile: <code>edituser</code></a></h3>
 <div class="paragraph">
-<p>Edits user details
+<p>Edits user details i.e. name, phone, address and allergies so that information of the user can be
+updated easily
 Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGY]</code></p>
 </div>
 <div class="sidebarblock">
@@ -163,7 +164,8 @@ Edits the phone number and address of the user to be <code>61234567</code> and <
 <div class="sect2">
 <h3 id="setting-a-profile-picture-code-changepic-code"><a class="link" href="#setting-a-profile-picture-code-changepic-code">Setting a profile picture: <code>changepic</code></a></h3>
 <div class="paragraph">
-<p>Changes a user&#8217;s profile picture to one that the user has selected. Works only for square images.</p>
+<p>Changes a user&#8217;s profile picture to one that the user has selected. Works best for square images
+where your face is right smack in the middle!</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>changepic</code></p>
@@ -187,20 +189,44 @@ Edits the phone number and address of the user to be <code>61234567</code> and <
 <div class="sect2">
 <h3 id="changing-of-profile-picture"><a class="link" href="#changing-of-profile-picture">Changing of Profile Picture</a></h3>
 <div class="sect3">
-<h4 id="motivation"><a class="link" href="#motivation">Motivation</a></h4>
+<h4 id="what"><a class="link" href="#what">What</a></h4>
 <div class="paragraph">
-<p>Allowing a user to change his/her profile picture is the first step to making his/her experience
-with HackEat a personalized one.</p>
+<p>The <code>changepic</code> command allows users to update their profile picture.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why"><a class="link" href="#why">Why</a></h4>
+<div class="paragraph">
+<p>As developers, we believe in creating applications that build connections with our target users. HackEat
+strives to achieve this by providing programmers with an option to spruce up the app a little by adding
+their own picture to it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how"><a class="link" href="#how">How</a></h4>
+<div class="paragraph">
+<p>The <code>changepic</code> command triggers the opening of a new window which allows the user to easily select an image.
+This image is then saved locally and the UI is updated to reflect the change.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ChangePicSequenceDiagram.PNG" alt="ChangePicSequenceDiagram" width="600">
+</div>
+</div>
 <div class="paragraph">
-<p>A default profile picture is downloaded from the Internet when HackEat is first started and this is
-stored in the same directory as the jar file.
-When the command is called, the user selects an appropriate image.
-The image overwrites the existing profile picture.
-An event is then raised and this causes the image displayed to change.</p>
+<p>When HackEat is first launched, a default profile picture is downloaded from the Internet.
+As the default profile picture should be displayed when the application starts up, a
+<code>MainApp#initProfilePic</code> was created to ensure that the application displays the picture.
+This picture is stored locally on the same directory as the jar file.
+Should the user desire to change the profile picture, the <code>changepic</code> command can be utilised.
+When the command is executed, a window pops up and the user selects an appropriate image.
+The existing profile picture is overwritten by the newly selected image.
+Upon successful execution, a new <code>ProfilePicChangedEvent</code> will be raised.
+This is handled by the <code>UserProfilePanel</code> of the <code>UI</code> component which then crops the image, if necessary,
+and then updates the UI.</p>
 </div>
 </div>
 <div class="sect3">
@@ -231,7 +257,7 @@ very clunky.</p>
 <p>Pros: More direct and easier to implement.</p>
 </li>
 <li>
-<p>Cons: Restricts this application to a single user.</p>
+<p>Cons: Use of this application will be restricted to a single user.</p>
 </li>
 </ul>
 </div>
@@ -245,8 +271,8 @@ very clunky.</p>
 </li>
 <li>
 <p>Cons: More tedious than Alternative 2 as a new field would have to be added to the user profile.
-Since our app is targeted only at a user i.e. the person who installs and sets up HackEat on his computer,
- such an implementation was unnecessary and Alternative 2 was chosen instead.</p>
+Since there exists only one <code>UserProfile</code> for this application, such an implementation was
+unnecessary.</p>
 </li>
 </ul>
 </div>
@@ -259,16 +285,32 @@ Since our app is targeted only at a user i.e. the person who installs and sets u
 <div class="sect2">
 <h3 id="editing-of-profile-details"><a class="link" href="#editing-of-profile-details">Editing of profile details</a></h3>
 <div class="sect3">
-<h4 id="motivation-2"><a class="link" href="#motivation-2">Motivation</a></h4>
+<h4 id="what-2"><a class="link" href="#what-2">What</a></h4>
 <div class="paragraph">
-<p>Allows a user to update their details easily without having to provide all the compulsory details again.</p>
+<p>The <code>edituser</code> command allows a user to update their details easily without having to provide all
+the compulsory details again.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-2"><a class="link" href="#why-2">Why</a></h4>
+<div class="paragraph">
+<p>No programmer likes to have his/her flow state broken, especially by a long command that requires
+one to key in repetitive details. Hence, the <code>edituser</code> command was created to allow programmers to
+speedily update their profile details.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-2"><a class="link" href="#how-2">How</a></h4>
+<div class="paragraph">
+<p>Under the <code>EditUserCommand</code>, a copy of the existing user with the updated details is created.
+This is then passed on to <code>model</code> for the user profile to be updated.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="imageblock">
 <div class="content">
-<img src="../images/EditUserSequenceDiagramLogic.png" alt="EditUserSequenceDiagramLogic" width="600">
+<img src="../images/EditUserSequenceDiagramLogic.PNG" alt="EditUserSequenceDiagramLogic" width="600">
 </div>
 </div>
 <div class="olist arabic">
@@ -287,7 +329,7 @@ Since our app is targeted only at a user i.e. the person who installs and sets u
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>The existing user profile is retrieved.</p>
+<p>The existing user profile is retrieved from <code>model</code>.</p>
 </li>
 <li>
 <p>Based on the attributes which have been set in the <code>EditUserDescriptor</code> object, a new <code>UserProfile</code>
@@ -319,10 +361,11 @@ object with the updated attribute values is created.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: It was more direct to change the details immediately from the Logic Component.</p>
+<p>Pros: It was more intuitive to change the details of the existing user profile from the Logic Component.</p>
 </li>
 <li>
-<p>Cons: It can result in increased coupling among the classes.</p>
+<p>Cons: This can result in increased coupling among the classes. As a result, many components would
+have to be modified, which renders this method to be more complicated than the alternative.</p>
 </li>
 </ul>
 </div>
@@ -332,10 +375,12 @@ object with the updated attribute values is created.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: A cleaner implementation where there is less coupling.</p>
+<p>Pros: A cleaner implementation where there is less coupling. Less components would have to be modified
+and it facilitates the execution of the UndoableCommand.</p>
 </li>
 <li>
-<p>Cons: On first sight, it seemed more tedious to implement.</p>
+<p>Cons: Overhead is incurred as a new copy of the UserProfile has to be created each time the user updates
+his/her details.</p>
 </li>
 </ul>
 </div>
@@ -350,7 +395,7 @@ object with the updated attribute values is created.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 17:12:18 UTC
+Last updated 2018-04-14 18:48:12 UTC
 </div>
 </div>
 </body>
