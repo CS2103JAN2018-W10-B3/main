@@ -24,17 +24,17 @@
 <div class="sect1">
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="what-is-this-project"><a class="link" href="#what-is-this-project">What is this project?</a></h3>
 <div class="paragraph">
-<p>For our CS2103 Software Engineering module at the National University of Singapore, our team of three morphed an AddressBook Java application into a food ordering application called HackEat (described next). The aim of this module was to practice important aspects of software engineering, including working with a large codebase (AddressBook started off as 10k Lines of Code), writing tests, using version control and practising project management using GitHub.</p>
+<p>For our CS2103 Software Engineering module at the National University of Singapore, our team of three morphed an AddressBook Java application into a food ordering application called HackEat. The aim of this module was to practice important aspects of software engineering, including working with a large codebase (AddressBook started off as 10k Lines of Code), writing tests, using version control and practising project management using GitHub.</p>
 </div>
-<div class="paragraph">
-<p>HackEat is a next-gen food recommendation and ordering app for the hackers, the programmers, the creators of world bustling and bursting with world-changing ideas but running short on time ⏰⏳.</p>
 </div>
+<div class="sect2">
+<h3 id="what-is-hackeat"><a class="link" href="#what-is-hackeat">What is HackEat?</a></h3>
 <div class="paragraph">
-<p>Perfect for the busy software developer or desk hermit: Use CLI commands to accelerate the chore of finding the right food.</p>
+<p>HackEat is a next-generation food recommendation and ordering app for the hackers, the programmers and the creators of the world who are bustling and bursting with world-changing ideas but running short on time ⏰⏳. HackEat is perfect for the busy software developer or desk hermit. Why not use CLI commands to accelerate the chore of finding the right food? HackEat takes the stress, thinking and time out of deciding what to eat. Our app allows users to order their favourite food in style with commands like <code>order</code>. That way, they can stay in the zone even when they’re not programming!</p>
 </div>
-<div class="paragraph">
-<p>HackEat takes the stress, thinking and time-waste out of deciding what to eat. Order your food in style with commands like <code>order</code> to stay in the zone even when you’re not programming.</p>
 </div>
 </div>
 </div>
@@ -48,13 +48,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it is: the user can <code>add</code> new foods by responding to the application&#8217;s prompts and questions.</p>
+<p>What it is: The user can <code>add</code> new foods by interactively responding to the application&#8217;s prompts and questions.</p>
 </li>
 <li>
 <p>Justification: We want to make an app that takes as little cognitive effort as possible to order and manage food intake. The complex format-based commands require typing extra formatting tags (e.g. <code>n/ p/ a/</code>), which takes extra cognitive effort. An interactive and natural chat-like system makes it much easier and faster to add, and in future, edit and order food.</p>
 </li>
 <li>
 <p>Highlights: This was a challenging feature to design. I used sequence diagrams and architectural diagrams to initially understand the problem. The idea of using a Session to track the state of interactions occurred to me only after considering other options.</p>
+</li>
+<li>
+<p>For the Developer: All the architecture is in place to convert other non-interactive commands into interactive commands.</p>
 </li>
 </ul>
 </div>
@@ -84,14 +87,24 @@ is also essential to the food ordering functionality: without a personal phone a
 <div class="ulist">
 <ul>
 <li>
+<p>Team work</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Found a bug and submitted a bug issue for teammate Sam Xie&#8217;s <code>order</code> feature [<a href="https://github.com/CS2103JAN2018-W10-B3/main/issues/163">GitHub Issue</a>]</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p>Project Management</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Processed and assigned bugs after testing session for v1.4</p>
+<p>Processed and assigned bugs after the v1.4 testing session.</p>
 </li>
 <li>
-<p>Managed release v1.2 and v1.4 on GitHub (2 releases)</p>
+<p>Managed release v1.2 and v1.4 on GitHub (2 releases).</p>
 </li>
 </ul>
 </div>
@@ -101,19 +114,19 @@ is also essential to the food ordering functionality: without a personal phone a
 <div class="ulist">
 <ul>
 <li>
-<p>Set up code collation</p>
+<p>Set up code collation <code>.sh</code> script.</p>
 </li>
 <li>
-<p>Renamed <code>.jar</code> file</p>
+<p>Renamed <code>.jar</code> file.</p>
 </li>
 <li>
-<p>Set up automated documentation publishing on GitHub</p>
+<p>Set up automated documentation publishing on GitHub.</p>
 </li>
 <li>
-<p>Set up Travis CI</p>
+<p>Set up Travis CI.</p>
 </li>
 <li>
-<p>Set up GitHub organisation, repository, invited team members and created Developer team</p>
+<p>Set up GitHub organisation, repository, invited team members and created Developer team.</p>
 </li>
 </ul>
 </div>
@@ -122,7 +135,7 @@ is also essential to the food ordering functionality: without a personal phone a
 </div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>]</p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W10-B3/main/blob/master/collated/functional/jaxony.md">Functional code</a>] [<a href="https://https://github.com/CS2103JAN2018-W10-B3/main/blob/master/collated/test/jaxony.md">Test code</a>]</p>
 </li>
 </ul>
 </div>
@@ -184,15 +197,19 @@ Format: <code>add</code></p>
 <p><code>peanut</code> [Press Enter] &gt; <code>Anything else? Type [Enter] to stop.</code></p>
 </li>
 <li>
-<p>[Press Enter] &gt; <code>Success!</code>
-=== Setting user profile: <code>userconfig</code>
-Sets user details to personalise the HackEat application so that food
+<p>[Press Enter] &gt; <code>Success!</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-user-profile-code-userconfig-code"><a class="link" href="#setting-user-profile-code-userconfig-code">Setting user profile: <code>userconfig</code></a></h3>
+<div class="paragraph">
+<p>Sets user details to personalise the HackEat application so that food
 can be delivered to the correct address and deliverers can contact the user via his/her phone number.
 Users can also specify their allergies so that certain foods can removed from HackEat&#8217;s smart food
 recommendations.
 Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -205,9 +222,11 @@ Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Sets user profile of Herbert Williams.
-=== Natural Language Chatbot <code>[coming in v2.0]</code></p>
+<p>Sets user profile of Herbert Williams.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="natural-language-chatbot-code-coming-in-v2-0-code"><a class="link" href="#natural-language-chatbot-code-coming-in-v2-0-code">Natural Language Chatbot <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>You can chat with HackEat without using strictly-formatted commands. Just like chatting with a human :)
 Our smart AI algorithm will understand what you mean, and what you want to eat (really!).</p>
@@ -290,15 +309,23 @@ concrete, command-specific child classes (e.g. <code>SessionAddCommand</code>).<
 <img src="../images/add-command-interactive-start.png" alt="add command interactive start" width="600">
 </div>
 </div>
-<div class="paragraph">
-<p>The abstract <code>Session</code> class provides the shared methods that control the logical flow of any interaction.
-The abstract methods <code>Session#parseInputForMultivaluedField</code> and <code>Session#parseInputForField</code> are overidden
-by concrete subclasses of <code>Session</code> because each type of <code>Command</code> needs to parse and store its</p>
-</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="sect4">
+<h5 id="extensibility"><a class="link" href="#extensibility">Extensibility</a></h5>
+<div class="paragraph">
+<p>The interactive mode of communication between the user and the system was built with extensibility in mind.
+The abstract <code>Session</code> class contains the common methods that control the logical flow of any interactive command.
+The abstract methods <code>Session#parseInputForMultivaluedField</code> and <code>Session#parseInputForField</code> are overidden
+by concrete subclasses, allowing each specific type of <code>Command</code> to parse and store user input relevant to its own fields.
+Hence, the implementation of an interactive <code>EditCommand</code> and <code>OrderCommand</code> would be convenient and simple owing to important
+architectural decisions made from the beginning.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="model-or-logic"><a class="link" href="#model-or-logic">Model or Logic?</a></h5>
 <div class="paragraph">
 <p>It was difficult to choose where to place the <code>Session</code>, <code>SessionAddCommand</code>, <code>SessionManager</code> and <code>SessionInterface</code>
 interface and classes. These classes and interface handle both application data (i.e. they should belong in the <code>Model</code>)
@@ -310,10 +337,52 @@ component.</p>
 <p>An alternative architectural design would be to have <code>SessionData</code> and <code>SessionLogic</code> separated across <code>Model</code> and
 <code>Logic</code> components. The advantage of this design is that it adheres to the strict definitions of the functions
 of each of these components. The disadvantage, which is much more costly, is the increased coupling between these separate components and classes. It is much more convenient to simply combine the state and logic for <code>Sessions</code> in a single component to reduce coupling and increase cohesion, making developer efficiency higher and code organisation more
-simple.
-=== Configuring the User Profile
-==== Motivation
-It&#8217;s nice to have someone greet you as your friend. HackEat makes its users comfortable and feel
+simple.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="chat-ui"><a class="link" href="#chat-ui">Chat UI</a></h3>
+<div class="sect3">
+<h4 id="what-2"><a class="link" href="#what-2">What</a></h4>
+<div class="paragraph">
+<p>The <code>ResultDisplay</code> was replaced with a <code>ChatPanel</code>. The system&#8217;s messages and the user&#8217;s messages are now shown
+as chat messages in a chat history. The message bubbles are color coordinated based on whether the message is
+a user message, a failed system message, or a successful system message.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-2"><a class="link" href="#why-2">Why</a></h4>
+<div class="paragraph">
+<p>The chat UI, like the interactive <code>add</code> command, aims to give our target users (hungry programmers) a fun and natural way to
+manage food and food ordering. The commands are still CLI-based, but now there is an added sense of interaction and novelty
+that delights our users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-2"><a class="link" href="#how-2">How</a></h4>
+<div class="paragraph">
+<p>The chat UI consists of the following set of nested JavaFX components, displayed in the object diagram below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/object-diagram-chat-ui.png" alt="object diagram chat ui" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>When the user presses <code>Enter</code> in the <code>CommandBox</code> UI component, a <code>NewUserMessageAvailableEvent</code> event is posted to the <code>EventCenter</code>.
+The <code>ChatPanel</code> is subscribed to such events, and a new message is created and added to the UI when such an event is received. The same
+approach applies to the handling of <code>NewResultAvailableEvents</code>, which represent the system&#8217;s responses to user input.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuring-the-user-profile"><a class="link" href="#configuring-the-user-profile">Configuring the User Profile</a></h3>
+<div class="sect3">
+<h4 id="motivation"><a class="link" href="#motivation">Motivation</a></h4>
+<div class="paragraph">
+<p>It&#8217;s nice to have someone greet you as your friend. HackEat makes its users comfortable and feel
 welcomed whenever they open their app. This is possible because a new feature has been implemented that
 takes in the user&#8217;s name and other information. The user is then greeted upon opening the app.</p>
 </div>
@@ -366,30 +435,13 @@ indicating that <code>HackEat</code> data has changed. The model data is then sa
 an <code>AddressBook</code> with the loaded <code>UserProfile</code>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="code-update-code-instead-of-code-add-code"><a class="link" href="#code-update-code-instead-of-code-add-code"><code>Update</code> instead of <code>Add</code></a></h5>
-<div class="paragraph">
-<p>It was simpler to implement a single <code>AddressBook#updateUserProfile</code> method instead of
-an <code>AddressBook#addUserProfile</code> and an update method. The update method simply sets the current <code>profile</code>
-property in <code>AddressBook</code> to the new incoming <code>profile</code>.</p>
-</div>
-<div class="paragraph">
-<p>By simply replacing the property, you don&#8217;t need to check if the property is not null before
-updating the profile. You also don&#8217;t need to check if the profile is null before choosing to add a new
-profile to the application. Separating add and update functionalities works for Food, but not for profile as the
-additional complexity is unnecessary.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 08:11:45 UTC
+Last updated 2018-04-15 08:35:53 UTC
 </div>
 </div>
 </body>
