@@ -261,7 +261,7 @@ Format: <code>list</code></p>
 <h3 id="editing-a-food-code-edit-code"><a class="link" href="#editing-a-food-code-edit-code">3.5. Editing a food : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing food in HackEat.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RATING] [pr/PRICE] [t/TAG] [alg/ALLERGY]&#8230;&#8203;</code></p>
+Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RATING] [pr/PRICE] [t/TAG]&#8230;&#8203; [alg/ALLERGY]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -499,7 +499,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 can be delivered to the correct address and deliverers can contact the user via his/her phone number.
 Users can also specify their allergies so that certain foods can removed from HackEat&#8217;s smart food
 recommendations.
-Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
+Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -519,8 +519,7 @@ Format: <code>userconfig n/NAME p/PHONE a/ADDRESS [alg/ALLERGY]</code></p>
 <h3 id="editing-user-profile-code-edituser-code"><a class="link" href="#editing-user-profile-code-edituser-code">3.12. Editing user profile: <code>edituser</code></a></h3>
 <div class="paragraph">
 <p>Edits user details i.e. name, phone, address and allergies so that information of the user can be
-updated easily
-Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGY]</code></p>
+updated easily. Format: <code>edituser [n/NAME] [p/PHONE] [a/ADDRESS] [alg/ALLERGY]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -676,7 +675,7 @@ Our smart AI algorithm will understand what you mean, and what you want to eat (
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203; [alg/ALLERGY]&#8230;&#8203;</code><br>
 e.g. <code>add n/Mee Rebus p/22224444 e/meerebus@example.com a/123, Clementi Rd, 1234665 t/malay t/spicy</code></p>
 </li>
 <li>
@@ -687,7 +686,7 @@ e.g. <code>add n/Mee Rebus p/22224444 e/meerebus@example.com a/123, Clementi Rd,
 e.g. <code>delete 3</code></p>
 </li>
 <li>
-<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203; [alg/ALLERGY]&#8230;&#8203;</code><br>
 e.g. <code>edit 2 n/Mee Soto e/meesoto@example.com</code></p>
 </li>
 <li>
@@ -717,7 +716,7 @@ e.g.<code>select 2</code></p>
 <p><strong>Order</strong> : <code>order [INDEX]</code></p>
 </li>
 <li>
-<p><strong>Edit user details</strong> : <code>edituser [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [alg/ALLERGY]</code><br>
+<p><strong>Edit user details</strong> : <code>edituser [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [alg/ALLERGY]&#8230;&#8203;</code><br>
 e.g. <code>edituser n/Lucas Ho alg/peanuts</code></p>
 </li>
 <li>
@@ -730,7 +729,7 @@ e.g. <code>edituser n/Lucas Ho alg/peanuts</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 09:51:56 UTC
+Last updated 2018-04-15 10:15:34 UTC
 </div>
 </div>
 </body>
