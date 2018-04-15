@@ -25,7 +25,7 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>HackEat was created based on a fork of AddressBook - Level 4 which is used
+<p>HackEat was morphed from AddressBook - Level 4, a desktop application which is used
 for teaching Software Engineering Principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 10 kLoC.</p>
 </div>
@@ -48,29 +48,35 @@ HackEat takes the stress, thinking and time-waste out of deciding what to eat. O
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to customise a user&#8217;s profile</strong></p>
+<p><strong>Major enhancement</strong>: Provide users with a personalised and customised experience</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to modify his/her contact details and sets his/her profile picture.</p>
+<p>What it does: Allows users to view and modify their details as well as update their profile picture</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can update his/her contact details.
-This is an essential feature so that the ordered food can be delivered to the right place. Moreover, user
-personalisation is important nowadays. What users appreciate is an emotionally tangible link between the user and the
-app. Having a profile picture is the first step to achieving this.</p>
+<p>Justification: This feature allows users to update their contact details and allergies - both of which are imperative to HackEat.
+Since the <code>order</code> command utilises the allergies of users to determine the types of food that they can eat, it is essential
+to have an <code>edituser</code> command that allows users to easily update their allergies. In addition, this feature also makes it simple for users to change
+their contact details, which can prove to be useful if they want their food to be delivered to the right place. Lastly, with the prevalence
+of user customisation these days, what users appreciate is an emotionally tangible link between them and the app. Having a profile picture is
+the first step to achieving this.</p>
 </li>
 <li>
-<p>Highlights: This enhancement resulted in the implementation of two new commands - <code>changepic</code> and <code>edituser</code>.</p>
+<p>Highlights: This enhancement resulted in the implementation of two new commands - <code>changepic</code> and <code>edituser</code>. Implementation of the two
+commands required an analysis of the pros and cons of the various possible options.</p>
+</li>
+<li>
+<p>Jackson Huang implemented the basic classes required for a User Profile.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a price attribute to Food.</p>
+<p><strong>Minor enhancement</strong>: Added price and allergy attribute to Food.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W10-B3/main/blob/master/collated/functional/tohcheryl.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W10-B3/main/blob/master/collated/test/tohcheryl.md">Test code</a>]</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -81,7 +87,10 @@ app. Having a profile picture is the first step to achieving this.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Wrote additional tests for existing features to increase coverage</p>
+<p>Wrote additional tests for existing features to increase coverage from 88% to 90% (<a href="https://github.com/CS2103JAN2018-W10-B3/main/pull/76">#76</a>)</p>
+</li>
+<li>
+<p>Update User Guide to align with HackEat</p>
 </li>
 </ul>
 </div>
@@ -91,7 +100,7 @@ app. Having a profile picture is the first step to achieving this.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Reported bugs and suggestions for other teams in the class</p>
+<p>Reported bugs and suggestions for other teams in the class (example: <a href="https://github.com/CS2103JAN2018-W13-B3/main/issues/151">#151</a>)</p>
 </li>
 </ul>
 </div>
@@ -101,8 +110,7 @@ app. Having a profile picture is the first step to achieving this.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Set up Coveralls
-== Contributions to the User Guide</p>
+<p>Set up Coveralls for the team</p>
 </li>
 </ul>
 </div>
@@ -112,6 +120,11 @@ app. Having a profile picture is the first step to achieving this.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -165,7 +178,7 @@ Edits the phone number and address of the user to be <code>61234567</code> and <
 <h3 id="setting-a-profile-picture-code-changepic-code"><a class="link" href="#setting-a-profile-picture-code-changepic-code">Setting a profile picture: <code>changepic</code></a></h3>
 <div class="paragraph">
 <p>Changes a user&#8217;s profile picture to one that the user has selected. Works best for square images
-where your face is right smack in the middle!</p>
+where your face is positioned right at the center.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>changepic</code></p>
@@ -395,7 +408,7 @@ his/her details.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:55:08 UTC
+Last updated 2018-04-15 08:11:45 UTC
 </div>
 </div>
 </body>
